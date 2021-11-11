@@ -1,12 +1,16 @@
-# SCP - Containment Breach
+# SCP - Containment Breach  (Traducción al español) 
 
-The game is based on the works of the SCP Foundation community (http://www.scp-wiki.net/).
+El juego está basado en los trabajos de la Comunidad de la Fundación SCP (http://www.scp-wiki.net/).
 
-This game and the source code are licensed under Creative Commons Attribution-ShareAlike 3.0 License.
+Esta es una versión traducida del juego original SCP Containment Breach
+La mayoria de los textos (hablando de los documentos de los SCP) fueron sacados de las traducciones oficiales de la comunidad (http://lafundacionscp.wikidot.com/)
+
+Este juego y el código fuente son licenciados bajo licencia Creative Commons Creative Commons Attribution-ShareAlike 3.0 License.
+
 
 http://creativecommons.org/licenses/by-sa/3.0/
 
-Requirements:
+Requisitos:
 •	Blitz3D v1.108
 
-Beware - the source code is perhaps more horrifying than the game itself!
+ Ciudado - el código fuente es tal vez más espeluznante que el propio juego!
