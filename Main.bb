@@ -1256,17 +1256,17 @@ Function UpdateConsole()
 					KillTimer = -1
 					Select Rand(4)
 						Case 1
-							DeathMSG = "[REDACTED]"
+							DeathMSG = "[ELIMINADO]"
 						Case 2
-							DeathMSG = "Subject D-9341 found dead in Sector [REDACTED]. "
-							DeathMSG = DeathMSG + "The subject appears to have attained no physical damage, and there is no visible indication as to what killed him. "
-							DeathMSG = DeathMSG + "Body was sent for autopsy."
+							DeathMSG = "Sujeto D-9341 encontrado muerto en el Sector [REDACTED]. "
+							DeathMSG = DeathMSG + "El sujeto parece no haber sufrido ningún daño físico y no hay indicios visibles de lo que lo mató. "
+							DeathMSG = DeathMSG + "El cuerpo fue enviado para la autopsia."
 						Case 3
 							DeathMSG = "EXCP_ACCESS_VIOLATION"
 						Case 4
-							DeathMSG = "Subject D-9341 found dead in Sector [REDACTED]. "
-							DeathMSG = DeathMSG + "The subject appears to have scribbled the letters "+Chr(34)+"kys"+Chr(34)+" in his own blood beside him. "
-							DeathMSG = DeathMSG + "No other signs of physical trauma or struggle can be observed. Body was sent for autopsy."
+							DeathMSG = "Sujeto D-9341 encontrado muerto en el sector [BORRADO]. "
+							DeathMSG = DeathMSG + "El sujeto parece haber garabateado las letras "+Chr(34)+"kys"+Chr(34)+" con su propia sangre a su lado. "
+							DeathMSG = DeathMSG + "No se observan otros signos de traumatismo físico o de lucha. El cuerpo fue enviado para la autopsia."
 					End Select
 					;[End Block]
 				Case "playmusic"
@@ -2254,8 +2254,8 @@ Function UseDoor(d.Doors, showmsg%=True, playsfx%=True)
 	If d\KeyCard > 0 Then
 		If SelectedItem = Null Then
 			If showmsg = True Then
-				If (Instr(Msg,"The keycard")=0 And Instr(Msg,"A keycard with")=0) Or (MsgTimer<70*3) Then
-					Msg = "A keycard is required to operate this door."
+				If (Instr(Msg,"La tarjeta de acceso")=0 And Instr(Msg,"Se requiere una tarjeta de acceso")=0) Or (MsgTimer<70*3) Then
+					Msg = "Se requiere una tarjeta de acceso para operar esta puerta."
 					MsgTimer = 70 * 7
 				EndIf
 			EndIf
@@ -2280,8 +2280,8 @@ Function UseDoor(d.Doors, showmsg%=True, playsfx%=True)
 			
 			If temp =-1 Then 
 				If showmsg = True Then
-					If (Instr(Msg,"The keycard")=0 And Instr(Msg,"A keycard with")=0) Or (MsgTimer<70*3) Then
-						Msg = "A keycard is required to operate this door."
+					If (Instr(Msg,"La tarjeta de acceso")=0 And Instr(Msg,"Se requiere una tarjeta de acceso")=0) Or (MsgTimer<70*3) Then
+						Msg = "Se requiere una tarjeta de acceso para operar esta puerta."
 						MsgTimer = 70 * 7
 					EndIf
 				EndIf
@@ -2291,12 +2291,12 @@ Function UseDoor(d.Doors, showmsg%=True, playsfx%=True)
 				If showmsg = True Then
 					If d\locked Then
 						PlaySound_Strict KeyCardSFX2
-						Msg = "The keycard was inserted into the slot but nothing happened."
+						Msg = "Se introdujo la tarjeta en la ranura, pero no ocurrió nada."
 						MsgTimer = 70 * 7
 						Return
 					Else
 						PlaySound_Strict KeyCardSFX1
-						Msg = "The keycard was inserted into the slot."
+						Msg = "La tarjeta de acceso se introdujo en la ranura."
 						MsgTimer = 70 * 7	
 					EndIf
 				EndIf
@@ -2305,9 +2305,9 @@ Function UseDoor(d.Doors, showmsg%=True, playsfx%=True)
 				If showmsg = True Then 
 					PlaySound_Strict KeyCardSFX2					
 					If d\locked Then
-						Msg = "The keycard was inserted into the slot but nothing happened."
+						Msg = "Se introdujo la tarjeta en la ranura, pero no ocurrió nada."
 					Else
-						Msg = "A keycard with security clearance "+d\KeyCard+" or higher is required to operate this door."
+						Msg = "Para accionar esta puerta se requiere una tarjeta de acceso de nivel "+d\KeyCard+" o superior."
 					EndIf
 					MsgTimer = 70 * 7					
 				EndIf
@@ -2322,14 +2322,14 @@ Function UseDoor(d.Doors, showmsg%=True, playsfx%=True)
 		SelectedItem = Null
 		If temp <> 0 Then
 			PlaySound_Strict ScannerSFX1
-			If (Instr(Msg,"You placed your")=0) Or (MsgTimer < 70*3) Then
-				Msg = "You place the palm of the hand onto the scanner. The scanner reads: "+Chr(34)+"DNA verified. Access granted."+Chr(34)
+			If (Instr(Msg,"Has colocado tu mano")=0) Or (MsgTimer < 70*3) Then
+				Msg = "Has colocado la mano en el escáner. El escáner lee: "+Chr(34)+"DNA verified. Access granted."+Chr(34)
 			EndIf
 			MsgTimer = 70 * 10
 		Else
 			If showmsg = True Then 
 				PlaySound_Strict ScannerSFX2
-				Msg = "You placed your palm onto the scanner. The scanner reads: "+Chr(34)+"DNA does not match known sample. Access denied."+Chr(34)
+				Msg = "Has colocado tu mano en el escaner. El escáner lee: "+Chr(34)+"El ADN no coincide con la muestra conocida. Acceso denegado"+Chr(34)
 				MsgTimer = 70 * 10
 			EndIf
 			Return			
@@ -2341,40 +2341,40 @@ Function UseDoor(d.Doors, showmsg%=True, playsfx%=True)
 					PlaySound_Strict ButtonSFX2
 					If PlayerRoom\RoomTemplate\Name <> "room2elevator" Then
                         If d\open Then
-                            Msg = "You pushed the button but nothing happened."
+                            Msg = "Has pulsado el botón pero no ha pasado nada."
                         Else    
-                            Msg = "The door appears to be locked."
+                            Msg = "La puerta parece estar cerrada."
                         EndIf    
                     Else
-                        Msg = "The elevator appears to be broken."
+                        Msg = "El ascensor parece estar roto."
                     EndIf
 					MsgTimer = 70 * 5
 				Else
 					If d\IsElevatorDoor = 1 Then
-						Msg = "You called the elevator."
+						Msg = "Has llamado al ascensor."
 						MsgTimer = 70 * 5
 					ElseIf d\IsElevatorDoor = 3 Then
-						Msg = "The elevator is already on this floor."
+						Msg = "El ascensor ya está en esta planta."
 						MsgTimer = 70 * 5
-					ElseIf (Msg<>"You called the elevator.")
-						If (Msg="You already called the elevator.") Or (MsgTimer<70*3)	
+					ElseIf (Msg<>"Has llamado al ascensor.")
+						If (Msg="Ya llamaste al ascensor.") Or (MsgTimer<70*3)	
 							Select Rand(10)
 								Case 1
-									Msg = "Stop spamming the button."
+									Msg = "Deja spammear el botón."
 									MsgTimer = 70 * 7
 								Case 2
-									Msg = "Pressing it harder does not make the elevator come faster."
+									Msg = "Presionar más fuerte no hace que el ascensor venga más rápido."
 									MsgTimer = 70 * 7
 								Case 3
-									Msg = "If you continue pressing this button I will generate a Memory Access Violation."
+									Msg = "Si continúa presionando este botón generaré una Violación de Acceso a la Memoria."
 									MsgTimer = 70 * 7
 								Default
-									Msg = "You already called the elevator."
+									Msg = "Ya llamaste al ascensor."
 									MsgTimer = 70 * 7
 							End Select
 						EndIf
 					Else
-						Msg = "You already called the elevator."
+						Msg = "Ya llamaste al ascensor."
 						MsgTimer = 70 * 7
 					EndIf
 				EndIf
@@ -3040,7 +3040,7 @@ Repeat
 				If EyeStuck < 9000 Then BlurTimer = Max(BlurTimer, (9000-EyeStuck)*0.5)
 				If EyeStuck < 6000 Then darkA = Min(Max(darkA, (6000-EyeStuck)/5000.0),1.0)
 				If EyeStuck < 9000 And EyeStuck+FPSfactor =>9000 Then 
-					Msg = "The eyedrops are causing your eyes to tear up."
+					Msg = "El medicamento hace que tus ojos lloren."
 					MsgTimer = 70*6
 				EndIf
 			EndIf
@@ -3168,15 +3168,15 @@ Repeat
 			If SelectedDifficulty\saveType = SAVEANYWHERE Then
 				RN$ = PlayerRoom\RoomTemplate\Name$
 				If RN$ = "173" Or (RN$ = "exit1" And EntityY(Collider)>1040.0*RoomScale) Or RN$ = "gatea"
-					Msg = "You cannot save in this location."
+					Msg = "No se puede guardar en esta ubicación."
 					MsgTimer = 70 * 4
 					;SetSaveMSG("You cannot save in this location.")
 				ElseIf (Not CanSave) Or QuickLoadPercent > -1
-					Msg = "You cannot save at this moment."
+					Msg = "No se puede guardar en este momento."
 					MsgTimer = 70 * 4
 					;SetSaveMSG("You cannot save at this moment.")
 					If QuickLoadPercent > -1
-						Msg = Msg + " (game is loading)"
+						Msg = Msg + " (el juego está cargando)"
 						;Save_MSG = Save_MSG + " (game is loading)"
 					EndIf
 				Else
@@ -3184,21 +3184,21 @@ Repeat
 				EndIf
 			ElseIf SelectedDifficulty\saveType = SAVEONSCREENS
 				If SelectedScreen=Null And SelectedMonitor=Null Then
-					Msg = "Saving is only permitted on clickable monitors scattered throughout the facility."
+					Msg = "Sólo se puede guardar en los monitores clicables repartidos por las instalaciones."
 					MsgTimer = 70 * 4
 					;SetSaveMSG("Saving is only permitted on clickable monitors scattered throughout the facility.")
 				Else
 					RN$ = PlayerRoom\RoomTemplate\Name$
 					If RN$ = "173" Or (RN$ = "exit1" And EntityY(Collider)>1040.0*RoomScale) Or RN$ = "gatea"
-						Msg = "You cannot save in this location."
+						Msg = "No se puede guardar en esta ubicación."
 						MsgTimer = 70 * 4
 						;SetSaveMSG("You cannot save in this location.")
 					ElseIf (Not CanSave) Or QuickLoadPercent > -1
-						Msg = "You cannot save at this moment."
+						Msg = "No se puede guardar en este momento."
 						MsgTimer = 70 * 4
 						;SetSaveMSG("You cannot save at this moment.")
 						If QuickLoadPercent > -1
-							Msg = Msg + " (game is loading)"
+							Msg = Msg + " (el juego está cargando)"
 							;Save_MSG = Save_MSG + " (game is loading)"
 						EndIf
 					Else
@@ -3211,13 +3211,13 @@ Repeat
 					EndIf
 				EndIf
 			Else
-				Msg = "Quick saving is disabled."
+				Msg = "El Guardado Rápido está desactivado."
 				MsgTimer = 70 * 4
 				;SetSaveMSG("Quick saving is disabled.")
 			EndIf
 		Else If SelectedDifficulty\saveType = SAVEONSCREENS And (SelectedScreen<>Null Or SelectedMonitor<>Null)
-			If (Msg<>"Game progress saved." And Msg<>"You cannot save in this location."And Msg<>"You cannot save at this moment.") Or MsgTimer<=0 Then
-				Msg = "Press "+KeyName(KEY_SAVE)+" to save."
+			If (Msg<>"Se ha guardado el progreso del juego." And Msg<>"No se puede guardar en esta ubicación."And Msg<>"No se puede guardar en este momento.") Or MsgTimer<=0 Then
+				Msg = "Presiona "+KeyName(KEY_SAVE)+" para guardar."
 				MsgTimer = 70*4
 				;SetSaveMSG("Press "+KeyName(KEY_SAVE)+" to save.")
 			EndIf
@@ -3255,7 +3255,7 @@ Repeat
 					If e\EventName = "173" Then
 						If e\EventState3 => 40 And e\EventState3 < 50 Then
 							If InvOpen Then
-								Msg = "Double click on the document to view it."
+								Msg = "Haga doble clic en el documento para verlo."
 								MsgTimer=70*7
 								e\EventState3 = 50
 							EndIf
@@ -3777,7 +3777,7 @@ Function DrawEnding()
 				
 				Color(255, 255, 255)
 				AASetFont Font2
-				AAText(x + width / 2 + 40*MenuScale, y + 20*MenuScale, "THE END", True)
+				AAText(x + width / 2 + 40*MenuScale, y + 20*MenuScale, "FIN", True)
 				AASetFont Font1
 				
 				If AchievementsMenu=0 Then 
@@ -3808,18 +3808,18 @@ Function DrawEnding()
 						achievementsUnlocked = achievementsUnlocked + Achievements(i)
 					Next
 					
-					AAText x, y, "SCPs encountered: " +scpsEncountered
-					AAText x, y+20*MenuScale, "Achievements unlocked: " + achievementsUnlocked+"/"+(MAXACHIEVEMENTS)
-					AAText x, y+40*MenuScale, "Rooms found: " + roomsfound+"/"+roomamount
-					AAText x, y+60*MenuScale, "Documents discovered: " +docsfound+"/"+docamount
-					AAText x, y+80*MenuScale, "Items refined in SCP-914: " +RefinedItems			
+					AAText x, y, "SCPs encontrados: " +scpsEncountered
+					AAText x, y+20*MenuScale, "Logros desbloqueados: " + achievementsUnlocked+"/"+(MAXACHIEVEMENTS)
+					AAText x, y+40*MenuScale, "Salas encontradas: " + roomsfound+"/"+roomamount
+					AAText x, y+60*MenuScale, "Documentos descubiertos: " +docsfound+"/"+docamount
+					AAText x, y+80*MenuScale, "Items refinados en SCP-914: " +RefinedItems			
 					
 					x = GraphicWidth / 2 - width / 2
 					y = GraphicHeight / 2 - height / 2
 					x = x+width/2
 					y = y+height-100*MenuScale
 					
-					If DrawButton(x-145*MenuScale,y-200*MenuScale,390*MenuScale,60*MenuScale,"ACHIEVEMENTS", True) Then
+					If DrawButton(x-145*MenuScale,y-200*MenuScale,390*MenuScale,60*MenuScale,"LOGROS", True) Then
 						AchievementsMenu = 1
 					EndIf
 					
@@ -3835,7 +3835,7 @@ Function DrawEnding()
 ;						FlushKeys()
 ;					EndIf
 					
-					If DrawButton(x-145*MenuScale,y-100*MenuScale,390*MenuScale,60*MenuScale,"MAIN MENU", True)
+					If DrawButton(x-145*MenuScale,y-100*MenuScale,390*MenuScale,60*MenuScale,"MENU PRINCIPAL", True)
 						ShouldPlay = 24
 						NowPlaying = ShouldPlay
 						For i=0 To 9
@@ -4050,8 +4050,8 @@ Function MovePlayer()
 		CameraShake = Sin(SuperManTimer / 5.0) * (SuperManTimer / 1500.0)
 		
 		If SuperManTimer > 70 * 50 Then
-			DeathMSG = "A Class D jumpsuit found in [DATA REDACTED]. Upon further examination, the jumpsuit was found to be filled with 12.5 kilograms of blue ash-like substance. "
-			DeathMSG = DeathMSG + "Chemical analysis of the substance remains non-conclusive. Most likely related to SCP-914."
+			DeathMSG = "Un traje de clase D encontrado en [DATOS ELIMINADOS]. Tras un examen más detallado, se descubrió que el traje estaba lleno de 12,5 kilogramos de una sustancia similar a la ceniza azul. "
+			DeathMSG = DeathMSG + "El análisis químico de la sustancia sigue sin ser concluyente. Lo más probable es que esté relacionada con el SCP-914."
 			Kill()
 			ShowEntity Fog
 		Else
@@ -4301,7 +4301,7 @@ Function MovePlayer()
 		EndIf
 		
 		If temp2 <= 60 And Bloodloss > 60 Then
-			Msg = "You are feeling faint from the amount of blood you have lost."
+			Msg = "Te sientes débil por la cantidad de sangre que has perdido."
 			MsgTimer = 70*4
 		EndIf
 	EndIf
@@ -4549,7 +4549,7 @@ Function MouseLook()
 					Stamina = Stamina - FPSfactor * 0.3
 				Case 1 ;chicken pox
 					If Rand(9000)=1 And Msg="" Then
-						Msg="Your skin is feeling itchy."
+						Msg="Sientes picor en la piel."
 						MsgTimer =70*4
 					EndIf
 				Case 2 ;cancer of the lungs
@@ -4569,10 +4569,10 @@ Function MouseLook()
 						SCP1025state[i]=SCP1025state[i]+FPSfactor*0.0005
 					EndIf
 					If SCP1025state[i]>20.0 Then
-						If SCP1025state[i]-FPSfactor<=20.0 Then Msg="The pain in your stomach is becoming unbearable."
+						If SCP1025state[i]-FPSfactor<=20.0 Then Msg="El dolor de estómago se hace insoportable."
 						Stamina = Stamina - FPSfactor * 0.3
 					ElseIf SCP1025state[i]>10.0
-						If SCP1025state[i]-FPSfactor<=10.0 Then Msg="Your stomach is aching."
+						If SCP1025state[i]-FPSfactor<=10.0 Then Msg="Te duele el estómago."
 					EndIf
 				Case 4 ;asthma
 					If Stamina < 35 Then
@@ -4594,8 +4594,8 @@ Function MouseLook()
 						HeartBeatRate=0
 						BlurTimer = Max(BlurTimer, 500)
 						If SCP1025state[i]>140 Then 
-							DeathMSG = Chr(34)+"He died of a cardiac arrest after reading SCP-1025, that's for sure. Is there such a thing as psychosomatic cardiac arrest, or does SCP-1025 have some "
-							DeathMSG = DeathMSG + "anomalous properties we are not yet aware of?"+Chr(34)
+							DeathMSG = Chr(34)+"Murió de un paro cardíaco después de leer SCP-1025, eso es seguro. Existe el paro cardíaco psicosomático, o SCP-1025 tiene alguna "
+							DeathMSG = DeathMSG + "propiedades anómalas que aún no conocemos"+Chr(34)
 							Kill()
 						EndIf
 					Else
@@ -4913,7 +4913,7 @@ Function DrawGUI()
 					MouseXSpeed() : MouseYSpeed() : MouseZSpeed() : mouse_x_speed_1#=0.0 : mouse_y_speed_1#=0.0
 				EndIf
 			Else
-				AAText GraphicWidth/2, y+70*scale, "ACCESS CODE: ",True,True	
+				AAText GraphicWidth/2, y+70*scale, "CODIGO DE ACCESO: ",True,True	
 				AASetFont Font4
 				AAText GraphicWidth/2, y+124*scale, KeypadInput,True,True	
 			EndIf
@@ -4954,7 +4954,7 @@ Function DrawGUI()
 										MouseXSpeed() : MouseYSpeed() : MouseZSpeed() : mouse_x_speed_1#=0.0 : mouse_y_speed_1#=0.0
 									Else
 										PlaySound_Strict ScannerSFX2
-										KeypadMSG = "ACCESS DENIED"
+										KeypadMSG = "ACCESO DENEGADO"
 										KeypadTimer = 210
 										KeypadInput = ""	
 									EndIf
@@ -5224,7 +5224,7 @@ Function DrawGUI()
 					ElseIf PrevOtherOpen\SecondInv[MouseSlot] <> SelectedItem
 						Select SelectedItem\itemtemplate\tempname
 							Default
-								Msg = "You cannot combine these two items."
+								Msg = "No se pueden combinar estos dos elementos."
 								MsgTimer = 70 * 5
 						End Select					
 					EndIf
@@ -5344,7 +5344,7 @@ Function DrawGUI()
 							
 							If DoubleClick Then
 								If WearingHazmat > 0 And Instr(SelectedItem\itemtemplate\tempname,"hazmatsuit")=0 Then
-									Msg = "You cannot use any items while wearing a hazmat suit."
+									Msg = "No puedes usar ningún objeto mientras llevas el traje para materiales peligrosos."
 									MsgTimer = 70*5
 									SelectedItem = Null
 									Return
@@ -5394,11 +5394,11 @@ Function DrawGUI()
 				If MouseSlot = 66 Then
 					Select SelectedItem\itemtemplate\tempname
 						Case "vest","finevest","hazmatsuit","hazmatsuit2","hazmatsuit3"
-							Msg = "Double click on this item to take it off."
+							Msg = "Haga doble clic en este objeto para quitarlo."
 							MsgTimer = 70*5
 						Case "scp1499","super1499"
 							If Wearing1499>0 Then
-								Msg = "Double click on this item to take it off."
+								Msg = "Haga doble clic en este objeto para quitarlo."
 								MsgTimer = 70*5
 							Else
 								DropItem(SelectedItem)
@@ -5449,20 +5449,20 @@ Function DrawGUI()
 											EndIf
 										Next
 										If SelectedItem <> Null Then
-											Msg = "The paperclip is not strong enough to hold any more items."
+											Msg = "El clip no es lo suficientemente fuerte como para sostener más objetos."
 										Else
 											If added\itemtemplate\tempname = "paper" Or added\itemtemplate\tempname = "oldpaper" Then
-												Msg = "This document was added to the clipboard."
+												Msg = "Este documento se ha añadido al portapapeles."
 											ElseIf added\itemtemplate\tempname = "badge"
-												Msg = added\itemtemplate\name + " was added to the clipboard."
+												Msg = added\itemtemplate\name + " se añadió al portapapeles."
 											Else
-												Msg = "The " + added\itemtemplate\name + " was added to the clipboard."
+												Msg = added\itemtemplate\name + " se añadió al portapapeles."
 											EndIf
 											
 										EndIf
 										MsgTimer = 70 * 5
 									Else
-										Msg = "You cannot combine these two items."
+										Msg = "No se pueden combinar estos dos elementos."
 										MsgTimer = 70 * 5
 									EndIf
 								ElseIf Inventory(MouseSlot)\itemtemplate\tempname = "wallet" Then
@@ -5493,18 +5493,18 @@ Function DrawGUI()
 											EndIf
 										Next
 										If SelectedItem <> Null Then
-											Msg = "The wallet is full."
+											Msg = "La cartera está llena."
 										Else
-											Msg = "You put "+added\itemtemplate\name+" into the wallet."
+											Msg = "Pusiste "+added\itemtemplate\name+" en la cartera."
 										EndIf
 										
 										MsgTimer = 70 * 5
 									Else
-										Msg = "You cannot combine these two items."
+										Msg = "No se pueden combinar estos dos elementos."
 										MsgTimer = 70 * 5
 									EndIf
 								Else
-									Msg = "You cannot combine these two items."
+									Msg = "No se pueden combinar estos dos elementos."
 									MsgTimer = 70 * 5
 								EndIf
 								SelectedItem = Null
@@ -5518,25 +5518,25 @@ Function DrawGUI()
 										RemoveItem (SelectedItem)
 										SelectedItem = Null
 										Inventory(MouseSlot)\state = 100.0
-										Msg = "You replaced the navigator's battery."
+										Msg = "Has sustituido la batería del navegador."
 										MsgTimer = 70 * 5
 									Case "S-NAV Navigator Ultimate"
-										Msg = "There seems to be no place for batteries in this navigator."
+										Msg = "Parece que no hay lugar para las pilas en este navegador."
 										MsgTimer = 70 * 5
 									Case "Radio Transceiver"
 										Select Inventory(MouseSlot)\itemtemplate\tempname 
 											Case "fineradio", "veryfineradio"
-												Msg = "There seems to be no place for batteries in this radio."
+												Msg = "Parece que no hay lugar para las pilas en esta radio."
 												MsgTimer = 70 * 5
 											Case "18vradio"
-												Msg = "The battery does not fit inside this radio."
+												Msg = "La batería no cabe dentro de esta radio."
 												MsgTimer = 70 * 5
 											Case "radio"
 												If SelectedItem\itemtemplate\sound <> 66 Then PlaySound_Strict(PickSFX(SelectedItem\itemtemplate\sound))	
 												RemoveItem (SelectedItem)
 												SelectedItem = Null
 												Inventory(MouseSlot)\state = 100.0
-												Msg = "You replaced the radio's battery."
+												Msg = "Has sustituido la batería de la radio."
 												MsgTimer = 70 * 5
 										End Select
 									Case "Night Vision Goggles"
@@ -5546,14 +5546,14 @@ Function DrawGUI()
 											RemoveItem (SelectedItem)
 											SelectedItem = Null
 											Inventory(MouseSlot)\state = 1000.0
-											Msg = "You replaced the goggles' battery."
+											Msg = "Has sustituido la batería de las gafas."
 											MsgTimer = 70 * 5
 										Else
-											Msg = "There seems to be no place for batteries in these night vision goggles."
+											Msg = "Parece que no hay lugar para las pilas en estas gafas de visión nocturna."
 											MsgTimer = 70 * 5
 										EndIf
 									Default
-										Msg = "You cannot combine these two items."
+										Msg = "No se pueden combinar estos dos elementos."
 										MsgTimer = 70 * 5	
 								End Select
 								;[End Block]
@@ -5561,32 +5561,32 @@ Function DrawGUI()
 								;[Block]
 								Select Inventory(MouseSlot)\itemtemplate\name
 									Case "S-NAV Navigator", "S-NAV 300 Navigator", "S-NAV 310 Navigator"
-										Msg = "The battery does not fit inside this navigator."
+										Msg = "La batería no cabe dentro de este navegador."
 										MsgTimer = 70 * 5
 									Case "S-NAV Navigator Ultimate"
-										Msg = "There seems to be no place for batteries in this navigator."
+										Msg = "Parece que no hay lugar para las pilas en este navegador."
 										MsgTimer = 70 * 5
 									Case "Radio Transceiver"
 										Select Inventory(MouseSlot)\itemtemplate\tempname 
 											Case "fineradio", "veryfineradio"
-												Msg = "There seems to be no place for batteries in this radio."
+												Msg = "Parece que no hay lugar para las pilas en esta radio."
 												MsgTimer = 70 * 5		
 											Case "18vradio"
 												If SelectedItem\itemtemplate\sound <> 66 Then PlaySound_Strict(PickSFX(SelectedItem\itemtemplate\sound))	
 												RemoveItem (SelectedItem)
 												SelectedItem = Null
 												Inventory(MouseSlot)\state = 100.0
-												Msg = "You replaced the radio's battery."
+												Msg = "Has sustituido la batería de la radio."
 												MsgTimer = 70 * 5
 										End Select 
 									Default
-										Msg = "You cannot combine these two items."
+										Msg = "No se pueden combinar estos dos elementos."
 										MsgTimer = 70 * 5	
 								End Select
 								;[End Block]
 							Default
 								;[Block]
-								Msg = "You cannot combine these two items."
+								Msg = "No se pueden combinar estos dos elementos"
 								MsgTimer = 70 * 5
 								;[End Block]
 						End Select					
@@ -5611,10 +5611,10 @@ Function DrawGUI()
 					;[Block]
 					If Wearing1499 = 0 And WearingHazmat=0 Then
 						If WearingNightVision = 1 Then
-							Msg = "You removed the goggles."
+							Msg = "Te has quitado las gafas."
 							CameraFogFar = StoredCameraFogFar
 						Else
-							Msg = "You put on the goggles."
+							Msg = "Te has puesto las gafas."
 							WearingGasMask = 0
 							WearingNightVision = 0
 							StoredCameraFogFar = CameraFogFar
@@ -5623,9 +5623,9 @@ Function DrawGUI()
 						
 						WearingNightVision = (Not WearingNightVision)
 					ElseIf Wearing1499 > 0 Then
-						Msg = "You need to take off SCP-1499 in order to put on the goggles."
+						Msg = "Tienes que quitarte el SCP-1499 para ponerte las gafas."
 					Else
-						Msg = "You need to take off the hazmat suit in order to put on the goggles."
+						Msg = "Hay que quitarse el traje de materiales peligrosos para ponerse las gafas."
 					EndIf
 					SelectedItem = Null
 					MsgTimer = 70 * 5
@@ -5634,10 +5634,10 @@ Function DrawGUI()
 					;[Block]
 					If Wearing1499 = 0 And WearingHazmat=0 Then
 						If WearingNightVision = 2 Then
-							Msg = "You removed the goggles."
+							Msg = "Te has quitado las gafas."
 							CameraFogFar = StoredCameraFogFar
 						Else
-							Msg = "You put on the goggles."
+							Msg = "Te has puesto las gafas."
 							WearingGasMask = 0
 							WearingNightVision = 0
 							StoredCameraFogFar = CameraFogFar
@@ -5646,9 +5646,9 @@ Function DrawGUI()
 						
 						WearingNightVision = (Not WearingNightVision) * 2
 					ElseIf Wearing1499 > 0 Then
-						Msg = "You need to take off SCP-1499 in order to put on the goggles."
+						Msg = "Tienes que quitarte el SCP-1499 para ponerte las gafas."
 					Else
-						Msg = "You need to take off the hazmat suit in order to put on the goggles."
+						Msg = "Hay que quitarse el traje de materiales peligrosos para ponerse las gafas."
 					EndIf
 					SelectedItem = Null
 					MsgTimer = 70 * 5
@@ -5657,10 +5657,10 @@ Function DrawGUI()
 					;[Block]
 					If Wearing1499 = 0 And WearingHazmat = 0 Then
 						If WearingNightVision = 3 Then
-							Msg = "You removed the goggles."
+							Msg = "Te has quitado las gafas."
 							CameraFogFar = StoredCameraFogFar
 						Else
-							Msg = "You put on the goggles."
+							Msg = "Te has puesto las gafas."
 							WearingGasMask = 0
 							WearingNightVision = 0
 							StoredCameraFogFar = CameraFogFar
@@ -5669,9 +5669,9 @@ Function DrawGUI()
 						
 						WearingNightVision = (Not WearingNightVision) * 3
 					ElseIf Wearing1499 > 0 Then
-						Msg = "You need to take off SCP-1499 in order to put on the goggles."
+						Msg = "Tienes que quitarte el SCP-1499 para ponerte las gafas."
 					Else
-						Msg = "You need to take off the hazmat suit in order to put on the goggles."
+						Msg = "Hay que quitarse el traje de materiales peligrosos para ponerse las gafas."
 					EndIf
 					SelectedItem = Null
 					MsgTimer = 70 * 5
@@ -5679,11 +5679,11 @@ Function DrawGUI()
 				Case "ring"
 					;[Block]
 					If Wearing714=2 Then
-						Msg = "You removed the ring."
+						Msg = "Te has quitado el anillo."
 						Wearing714 = False
 					Else
 						;Achievements(Achv714)=True
-						Msg = "You put on the ring."
+						Msg = "Te has puesto el anillo."
 						Wearing714 = 2
 					EndIf
 					MsgTimer = 70 * 5
@@ -5696,10 +5696,10 @@ Function DrawGUI()
 							ShowEntity Light
 							LightFlash = 7
 							PlaySound_Strict(LoadTempSound("SFX\SCP\1123\Touch.ogg"))		
-							DeathMSG = "Subject D-9341 was shot dead after attempting to attack a member of Nine-Tailed Fox. Surveillance tapes show that the subject had been "
-							DeathMSG = DeathMSG + "wandering around the site approximately 9 minutes prior, shouting the phrase " + Chr(34) + "get rid of the four pests" + Chr(34)
-							DeathMSG = DeathMSG + " in chinese. SCP-1123 was found in [REDACTED] nearby, suggesting the subject had come into physical contact with it. How "
-							DeathMSG = DeathMSG + "exactly SCP-1123 was removed from its containment chamber is still unknown."
+							DeathMSG = "El sujeto D-9341 fue abatido tras intentar atacar a un miembro de Zorro de Nueve Colas. Las cintas de vigilancia muestran que el sujeto había estado "
+							DeathMSG = DeathMSG + "deambulando por el lugar aproximadamente 9 minutos antes, gritando la frase " + Chr(34) + "eliminar las cuatro plagas" + Chr(34)
+							DeathMSG = DeathMSG + " en chino. SCP-1123 fue encontrado en [REDACTED] cerca, sugiriendo que el sujeto había entrado en contacto físico con él. Todavía"
+							DeathMSG = DeathMSG + " se desconoce cómo se extrajo exactamente el SCP-1123 de su cámara de contención."
 							Kill()
 							Return
 						EndIf
@@ -5739,9 +5739,9 @@ Function DrawGUI()
 						GiveAchievement(Achv500)
 						
 						If Infect > 0 Then
-							Msg = "You swallowed the pill. Your nausea is fading."
+							Msg = "Te has tragado la pastilla. Tus náuseas se desvanecen."
 						Else
-							Msg = "You swallowed the pill."
+							Msg = "Te has tragado la pastilla."
 						EndIf
 						MsgTimer = 70*7
 						
@@ -5766,29 +5766,29 @@ Function DrawGUI()
 						Select Rand(5)
 							Case 1
 								Injuries = 3.5
-								Msg = "You started bleeding heavily."
+								Msg = "Has empezado a sangrar mucho."
 								MsgTimer = 70*7
 							Case 2
 								Injuries = 0
 								Bloodloss = 0
-								Msg = "Your wounds are healing up rapidly."
+								Msg = "Tus heridas se están curando rápidamente."
 								MsgTimer = 70*7
 							Case 3
 								Injuries = Max(0, Injuries - Rnd(0.5,3.5))
 								Bloodloss = Max(0, Bloodloss - Rnd(10,100))
-								Msg = "You feel much better."
+								Msg = "Te sientes mucho mejor."
 								MsgTimer = 70*7
 							Case 4
 								BlurTimer = 10000
 								Bloodloss = 0
-								Msg = "You feel nauseated."
+								Msg = "Sientes náuseas."
 								MsgTimer = 70*7
 							Case 5
 								BlinkTimer = -10
 								Local roomname$ = PlayerRoom\RoomTemplate\Name
 								If roomname = "dimension1499" Or roomname = "gatea" Or (roomname="exit1" And EntityY(Collider)>1040.0*RoomScale)
 									Injuries = 2.5
-									Msg = "You started bleeding heavily."
+									Msg = "Has empezado a sangrar mucho."
 									MsgTimer = 70*7
 								Else
 									For r.Rooms = Each Rooms
@@ -5803,7 +5803,7 @@ Function DrawGUI()
 											Exit
 										EndIf
 									Next
-									Msg = "For some inexplicable reason, you find yourself inside the pocket dimension."
+									Msg = "Por alguna razón inexplicable, te encuentras dentro de la dimensión de bolsillo."
 									MsgTimer = 70*8
 								EndIf
 						End Select
@@ -5814,7 +5814,7 @@ Function DrawGUI()
 				Case "firstaid", "finefirstaid", "firstaid2"
 					;[Block]
 					If Bloodloss = 0 And Injuries = 0 Then
-						Msg = "You do not need to use a first aid kit right now."
+						Msg = "No es necesario utilizar un botiquín de primeros auxilios ahora."
 						MsgTimer = 70*5
 						SelectedItem = Null
 					Else
@@ -5840,33 +5840,33 @@ Function DrawGUI()
 									Bloodloss = 0
 									Injuries = Max(0, Injuries - 2.0)
 									If Injuries = 0 Then
-										Msg = "You bandaged the wounds and took a painkiller. You feel fine."
+										Msg = "Te vendaste las heridas y tomaste un analgésico. Te sientes bien."
 									ElseIf Injuries > 1.0
-										Msg = "You bandaged the wounds and took a painkiller, but you were not able to stop the bleeding."
+										Msg = "Vendó las heridas y tomó un analgésico, pero no pudiste detener la hemorragia."
 									Else
-										Msg = "You bandaged the wounds and took a painkiller, but you still feel sore."
+										Msg = "Te vendaste las heridas y te tomaste un analgésico, pero aún te duele."
 									EndIf
 									MsgTimer = 70*5
 									RemoveItem(SelectedItem)
 								Else
 									Bloodloss = Max(0, Bloodloss - Rand(10,20))
 									If Injuries => 2.5 Then
-										Msg = "The wounds were way too severe to staunch the bleeding completely."
+										Msg = "Las heridas eran demasiado graves para detener la hemorragia por completo."
 										Injuries = Max(2.5, Injuries-Rnd(0.3,0.7))
 									ElseIf Injuries > 1.0
 										Injuries = Max(0.5, Injuries-Rnd(0.5,1.0))
 										If Injuries > 1.0 Then
-											Msg = "You bandaged the wounds but were unable to staunch the bleeding completely."
+											Msg = "Vendaste las heridas, pero no pudiste detener la hemorragia por completo."
 										Else
-											Msg = "You managed to stop the bleeding."
+											Msg = "Has conseguido detener la hemorragia."
 										EndIf
 									Else
 										If Injuries > 0.5 Then
 											Injuries = 0.5
-											Msg = "You took a painkiller, easing the pain slightly."
+											Msg = "Tomaste un analgésico, aliviando ligeramente el dolor."
 										Else
 											Injuries = 0.5
-											Msg = "You took a painkiller, but it still hurts to walk."
+											Msg = "You took a painkiller, pero sigue doliendo al caminar."
 										EndIf
 									EndIf
 									
@@ -5874,22 +5874,22 @@ Function DrawGUI()
 										Select Rand(6)
 											Case 1
 												SuperMan = True
-												Msg = "You have becomed overwhelmedwithadrenalineholyshitWOOOOOO~!"
+												Msg = "Te has convertido en sobrecargadodeadrenalinajoderWOOOOHOO~!"
 											Case 2
 												InvertMouse = (Not InvertMouse)
-												Msg = "You suddenly find it very difficult to turn your head."
+												Msg = "De repente te resulta muy difícil girar la cabeza."
 											Case 3
 												BlurTimer = 5000
-												Msg = "You feel nauseated."
+												Msg = "Sientes náuseas."
 											Case 4
 												BlinkEffect = 0.6
 												BlinkEffectTimer = Rand(20,30)
 											Case 5
 												Bloodloss = 0
 												Injuries = 0
-												Msg = "You bandaged the wounds. The bleeding stopped completely and you feel fine."
+												Msg = "Has vendado las heridas. La hemorragia se ha detenido por completo y te sientes bien."
 											Case 6
-												Msg = "You bandaged the wounds and blood started pouring heavily through the bandages."
+												Msg = "Vendaste las heridas y la sangre empezó a brotar con fuerza a través de las vendas."
 												Injuries = 3.5
 										End Select
 									EndIf
@@ -5964,7 +5964,7 @@ Function DrawGUI()
 								SelectedItem\itemtemplate\img=LoadImage_Strict(SelectedItem\itemtemplate\imgpath)	
 								
 								If (SelectedItem\state = 0) Then
-									Msg = Chr(34)+"Hey, I remember this movie!"+Chr(34)
+									Msg = Chr(34)+"Oye, me acuerdo de esta película!"+Chr(34)
 									MsgTimer = 70*10
 									PlaySound_Strict LoadTempSound("SFX\SCP\1162\NostalgiaCancer"+Rand(1,5)+".ogg")
 									SelectedItem\state = 1
@@ -6064,7 +6064,7 @@ Function DrawGUI()
 						StaminaEffect = 0.5
 						StaminaEffectTimer = 20
 						
-						Msg = "You injected yourself with the syringe and feel a slight adrenaline rush."
+						Msg = "Te inyectas con la jeringuilla y sientes un ligero subidón de adrenalina."
 						MsgTimer = 70 * 8
 						
 						RemoveItem(SelectedItem)
@@ -6077,7 +6077,7 @@ Function DrawGUI()
 						StaminaEffect = Rnd(0.5, 0.8)
 						StaminaEffectTimer = Rnd(20, 30)
 						
-						Msg = "You injected yourself with the syringe and feel an adrenaline rush."
+						Msg = "Te inyectas con la jeringuilla y sientes un subidón de adrenalina."
 						MsgTimer = 70 * 8
 						
 						RemoveItem(SelectedItem)
@@ -6091,13 +6091,13 @@ Function DrawGUI()
 								HealTimer = Rnd(40, 60)
 								StaminaEffect = 0.1
 								StaminaEffectTimer = 30
-								Msg = "You injected yourself with the syringe and feel a huge adrenaline rush."
+								Msg = "Te inyectas con la jeringuilla y sientes un enorme subidón de adrenalina."
 							Case 2
 								SuperMan = True
-								Msg = "You injected yourself with the syringe and feel a humongous adrenaline rush."
+								Msg = "Te inyectas con la jeringuilla y sientes un tremendo subidón de adrenalina."
 							Case 3
 								VomitTimer = 30
-								Msg = "You injected yourself with the syringe and feel a pain in your stomach."
+								Msg = "Te inyectas con la jeringa y sientes un dolor en el estómago."
 						End Select
 						
 						MsgTimer = 70 * 8
@@ -6118,7 +6118,7 @@ Function DrawGUI()
 					;RadioState(7) = another timer for the "code channel"
 					
 					If RadioState(5) = 0 Then 
-						Msg = "Use the numbered keys 1 through 5 to cycle between various channels."
+						Msg = "Utilice las teclas numeradas del 1 al 5 para pasar de un canal a otro."
 						MsgTimer = 70 * 5
 						RadioState(5) = 1
 						RadioState(0) = -1
@@ -6434,23 +6434,23 @@ Function DrawGUI()
 						If SelectedItem\state = 0 Then
 							Select Rand(6)
 								Case 1
-									Msg = Chr(34)+"I don't have anything to light it with. Umm, what about that... Nevermind."+Chr(34)
+									Msg = Chr(34)+"No tengo nada para encenderlo. Umm, qué hay de eso... No importa."+Chr(34)
 								Case 2
-									Msg = "You are unable to get lit."
+									Msg = "No puedes encenderlo."
 								Case 3
-									Msg = Chr(34)+"I quit that a long time ago."+Chr(34)
+									Msg = Chr(34)+"Lo dejé hace mucho tiempo."+Chr(34)
 									RemoveItem(SelectedItem)
 								Case 4
-									Msg = Chr(34)+"Even if I wanted one, I have nothing to light it with."+Chr(34)
+									Msg = Chr(34)+"Aunque quisiera uno, no tengo nada con qué encenderlo."+Chr(34)
 								Case 5
-									Msg = Chr(34)+"Could really go for one now... Wish I had a lighter."+Chr(34)
+									Msg = Chr(34)+"Me encantaría probar uno ahora... Me gustaría tener un encendedor."+Chr(34)
 								Case 6
-									Msg = Chr(34)+"Don't plan on starting, even at a time like this."+Chr(34)
+									Msg = Chr(34)+"No pienses en empezar, ni siquiera en un momento como este."+Chr(34)
 									RemoveItem(SelectedItem)
 							End Select
 							SelectedItem\state = 1 
 						Else
-							Msg = "You are unable to get lit."
+							Msg = "No puedes encenderlo."
 						EndIf
 						
 						MsgTimer = 70 * 5
@@ -6460,9 +6460,9 @@ Function DrawGUI()
 					;[Block]
 					If CanUseItem(False,False,True)
 						If Wearing714=1 Then
-							Msg = Chr(34) + "DUDE WTF THIS SHIT DOESN'T EVEN WORK" + Chr(34)
+							Msg = Chr(34) + "AMIGO WTF ESTA MIERDA NI SIQUIERA FUNCIONA" + Chr(34)
 						Else
-							Msg = Chr(34) + "MAN DATS SUM GOOD ASS SHIT" + Chr(34)
+							Msg = Chr(34) + "SANTA MADRE DE DIOS" + Chr(34)
 							Injuries = Max(Injuries-0.5, 0)
 							BlurTimer = 500
 							GiveAchievement(Achv420)
@@ -6476,12 +6476,12 @@ Function DrawGUI()
 					;[Block]
 					If CanUseItem(False,False,True)
 						If Wearing714=1 Then
-							Msg = Chr(34) + "DUDE WTF THIS SHIT DOESN'T EVEN WORK" + Chr(34)
+							Msg = Chr(34) + "AMIGO WTF ESTA MIERDA NI SIQUIERA FUNCIONA" + Chr(34)
 						Else
-							DeathMSG = "Subject D-9341 found in a comatose state in [DATA REDACTED]. The subject was holding what appears to be a cigarette while smiling widely. "
-							DeathMSG = DeathMSG+"Chemical analysis of the cigarette has been inconclusive, although it seems to contain a high concentration of an unidentified chemical "
-							DeathMSG = DeathMSG+"whose molecular structure is remarkably similar to that of tetrahydrocannabinol."
-							Msg = Chr(34) + "UH WHERE... WHAT WAS I DOING AGAIN... MAN I NEED TO TAKE A NAP..." + Chr(34)
+							DeathMSG = "El sujeto D-9341 fue encontrado en estado de coma en [DATOS ELIMINADOS]. El sujeto sostenía lo que parece ser un cigarrillo mientras sonreía profusamente. "
+							DeathMSG = DeathMSG+"El análisis químico del cigarrillo no ha sido concluyente, aunque parece contener una alta concentración de una sustancia química no identificada "
+							DeathMSG = DeathMSG+"cuya estructura molecular es notablemente similar a la del tetrahidrocannabinol."
+							Msg = Chr(34) + "UH DONDE... QUÉ ESTABA HACIENDO DE NUEVO... HOMBRE NECESITO TOMAR UNA SIESTA..." + Chr(34)
 							KillTimer = -1						
 						EndIf
 						MsgTimer = 70 * 6
@@ -6491,11 +6491,11 @@ Function DrawGUI()
 				Case "scp714"
 					;[Block]
 					If Wearing714=1 Then
-						Msg = "You removed the ring."
+						Msg = "Te has quitado el anillo."
 						Wearing714 = False
 					Else
 						GiveAchievement(Achv714)
-						Msg = "You put on the ring."
+						Msg = "Te has puesto el anillo."
 						Wearing714 = True
 					EndIf
 					MsgTimer = 70 * 5
@@ -6521,7 +6521,7 @@ Function DrawGUI()
 						
 						If SelectedItem\state=100 Then
 							If WearingHazmat>0 Then
-								Msg = "You removed the hazmat suit."
+								Msg = "Te quitaste el traje de materiales peligrosos."
 								WearingHazmat = False
 								DropItem(SelectedItem)
 							Else
@@ -6536,7 +6536,7 @@ Function DrawGUI()
 									WearingHazmat = 3
 								EndIf
 								If SelectedItem\itemtemplate\sound <> 66 Then PlaySound_Strict(PickSFX(SelectedItem\itemtemplate\sound))
-								Msg = "You put on the hazmat suit."
+								Msg = "Te has puesto traje de materiales peligrosos."
 								If WearingNightVision Then CameraFogFar = StoredCameraFogFar
 								WearingGasMask = 0
 								WearingNightVision = 0
@@ -6566,15 +6566,15 @@ Function DrawGUI()
 					
 					If SelectedItem\state=100 Then
 						If WearingVest>0 Then
-							Msg = "You removed the vest."
+							Msg = "Te has quitado el chaleco."
 							WearingVest = False
 							DropItem(SelectedItem)
 						Else
 							If SelectedItem\itemtemplate\tempname="vest" Then
-								Msg = "You put on the vest and feel slightly encumbered."
+								Msg = "Te pones el chaleco y te sientes ligeramente agobiado."
 								WearingVest = 1
 							Else
-								Msg = "You put on the vest and feel heavily encumbered."
+								Msg = "Te pones el chaleco y te sientes muy agobiado."
 								WearingVest = 2
 							EndIf
 							If SelectedItem\itemtemplate\sound <> 66 Then PlaySound_Strict(PickSFX(SelectedItem\itemtemplate\sound))
@@ -6588,12 +6588,12 @@ Function DrawGUI()
 					;[Block]
 					If Wearing1499 = 0 And WearingHazmat = 0 Then
 						If WearingGasMask Then
-							Msg = "You removed the gas mask."
+							Msg = "Te quitaste la máscara de gas."
 						Else
 							If SelectedItem\itemtemplate\tempname = "supergasmask"
-								Msg = "You put on the gas mask and you can breathe easier."
+								Msg = "Te pusiste la máscara de gas y ahora puedes respirar mejor."
 							Else
-								Msg = "You put on the gas mask."
+								Msg = "Te pusiste la máscara de gas."
 							EndIf
 							If WearingNightVision Then CameraFogFar = StoredCameraFogFar
 							WearingNightVision = 0
@@ -6607,9 +6607,9 @@ Function DrawGUI()
 							WearingGasMask = (Not WearingGasMask)
 						EndIf
 					ElseIf Wearing1499 > 0 Then
-						Msg = "You need to take off SCP-1499 in order to put on the gas mask."
+						Msg = "Tienes que quitarte el SCP-1499 para ponerte la máscara de gas."
 					Else
-						Msg = "You need to take off the hazmat suit in order to put on the gas mask."
+						Msg = "Hay que quitarse el traje de materiales peligrosos para ponerse la máscara de gas."
 					EndIf
 					SelectedItem = Null
 					MsgTimer = 70 * 5
@@ -6829,7 +6829,7 @@ Function DrawGUI()
 				Case "scp1499","super1499"
 					;[Block]
 					If WearingHazmat>0
-						Msg = "You are not able to wear SCP-1499 and a hazmat suit at the same time."
+						Msg = "No puedes llevar SCP-1499 y un traje de protección contra riesgos al mismo tiempo."
 						MsgTimer = 70 * 5
 						SelectedItem=Null
 						Return
@@ -6933,7 +6933,7 @@ Function DrawGUI()
 						PlaySound_Strict LoadTempSound("SFX\SCP\1162\NostalgiaCancer"+Rand(6,10)+".ogg")
 						Select SelectedItem\itemtemplate\name
 							Case "Old Badge"
-								Msg = Chr(34)+"Huh? This guy looks just like me!"+Chr(34)
+								Msg = Chr(34)+"Eh? Este tipo se parece a mí!"+Chr(34)
 								MsgTimer = 70*10
 						End Select
 						
@@ -6945,7 +6945,7 @@ Function DrawGUI()
 					If SelectedItem\state = 0 Then
 						PlaySound_Strict LoadTempSound("SFX\SCP\1162\NostalgiaCancer"+Rand(6,10)+".ogg")
 						
-						Msg = Chr(34)+"Isn't this the key to that old shack? The one where I... No, it can't be."+Chr(34)
+						Msg = Chr(34)+"No es esta la llave de esa vieja choza? La que yo... No, no puede ser."+Chr(34)
 						MsgTimer = 70*10						
 					EndIf
 					
@@ -6968,7 +6968,7 @@ Function DrawGUI()
 							Case "Disciplinary Hearing DH-S-4137-17092"
 								BlurTimer = 1000
 								
-								Msg = Chr(34)+"Why does this seem so familiar?"+Chr(34)
+								Msg = Chr(34)+"Por qué me resulta tan familiar?"+Chr(34)
 								MsgTimer = 70*10
 								PlaySound_Strict LoadTempSound("SFX\SCP\1162\NostalgiaCancer"+Rand(6,10)+".ogg")
 								SelectedItem\state = 1
@@ -6989,11 +6989,11 @@ Function DrawGUI()
 				Case "scp427"
 					;[Block]
 					If I_427\Using=1 Then
-						Msg = "You closed the locket."
+						Msg = "Has cerrado el medallón."
 						I_427\Using = False
 					Else
 						GiveAchievement(Achv427)
-						Msg = "You opened the locket."
+						Msg = "Has abierto el medallón."
 						I_427\Using = True
 					EndIf
 					MsgTimer = 70 * 5
@@ -7002,7 +7002,7 @@ Function DrawGUI()
 				Case "pill"
 					;[Block]
 					If CanUseItem(False, False, True)
-						Msg = "You swallowed the pill."
+						Msg = "Te tragaste la pildora."
 						MsgTimer = 70*7
 						
 						RemoveItem(SelectedItem)
@@ -7012,7 +7012,7 @@ Function DrawGUI()
 				Case "scp500death"
 					;[Block]
 					If CanUseItem(False, False, True)
-						Msg = "You swallowed the pill."
+						Msg = "Te tragaste la pildora."
 						MsgTimer = 70*7
 						
 						If I_427\Timer < 70*360 Then
@@ -7139,7 +7139,7 @@ Function DrawMenu()
 					
 					If StopHidingTimer => 40 Then
 						PlaySound_Strict(HorrorSFX(15))
-						Msg = "STOP HIDING"
+						Msg = "DEJA DE ESCONDERTE"
 						MsgTimer = 6*70
 						MenuOpen = False
 						Return
@@ -7168,23 +7168,23 @@ Function DrawMenu()
 		
 		If AchievementsMenu > 0 Then
 			AASetFont Font2
-			AAText(x, y-(122-45)*MenuScale, "ACHIEVEMENTS",False,True)
+			AAText(x, y-(122-45)*MenuScale, "LOGROS",False,True)
 			AASetFont Font1
 		ElseIf OptionsMenu > 0 Then
 			AASetFont Font2
-			AAText(x, y-(122-45)*MenuScale, "OPTIONS",False,True)
+			AAText(x, y-(122-45)*MenuScale, "AJUSTES",False,True)
 			AASetFont Font1
 		ElseIf QuitMSG > 0 Then
 			AASetFont Font2
-			AAText(x, y-(122-45)*MenuScale, "QUIT?",False,True)
+			AAText(x, y-(122-45)*MenuScale, "SALIR?",False,True)
 			AASetFont Font1
 		ElseIf KillTimer >= 0 Then
 			AASetFont Font2
-			AAText(x, y-(122-45)*MenuScale, "PAUSED",False,True)
+			AAText(x, y-(122-45)*MenuScale, "PAUSA",False,True)
 			AASetFont Font1
 		Else
 			AASetFont Font2
-			AAText(x, y-(122-45)*MenuScale, "YOU DIED",False,True)
+			AAText(x, y-(122-45)*MenuScale, "HAS MUERTO",False,True)
 			AASetFont Font1
 		End If		
 		
@@ -7195,11 +7195,11 @@ Function DrawMenu()
 		
 		If AchievementsMenu <= 0 And OptionsMenu <= 0 And QuitMSG <= 0
 			AASetFont Font1
-			AAText x, y, "Difficulty: "+SelectedDifficulty\name
-			AAText x, y+20*MenuScale, "Save: "+CurrSave
-			AAText x, y+40*MenuScale, "Map seed: "+RandomSeed
+			AAText x, y, "Dificultad: "+SelectedDifficulty\name
+			AAText x, y+20*MenuScale, "Guardado: "+CurrSave
+			AAText x, y+40*MenuScale, "Seed del mapa: "+RandomSeed
 		ElseIf AchievementsMenu <= 0 And OptionsMenu > 0 And QuitMSG <= 0 And KillTimer >= 0
-			If DrawButton(x + 101 * MenuScale, y + 390 * MenuScale, 230 * MenuScale, 60 * MenuScale, "Back") Then
+			If DrawButton(x + 101 * MenuScale, y + 390 * MenuScale, 230 * MenuScale, 60 * MenuScale, "Atras") Then
 				AchievementsMenu = 0
 				OptionsMenu = 0
 				QuitMSG = 0
@@ -7221,10 +7221,10 @@ Function DrawMenu()
 				Rect(x+320*MenuScale,y-5*MenuScale,110*MenuScale,40*MenuScale,True)
 			EndIf
 			
-			If DrawButton(x-5*MenuScale,y,100*MenuScale,30*MenuScale,"GRAPHICS",False) Then OptionsMenu = 1
+			If DrawButton(x-5*MenuScale,y,100*MenuScale,30*MenuScale,"GRAFICOS",False) Then OptionsMenu = 1
 			If DrawButton(x+105*MenuScale,y,100*MenuScale,30*MenuScale,"AUDIO",False) Then OptionsMenu = 2
-			If DrawButton(x+215*MenuScale,y,100*MenuScale,30*MenuScale,"CONTROLS",False) Then OptionsMenu = 3
-			If DrawButton(x+325*MenuScale,y,100*MenuScale,30*MenuScale,"ADVANCED",False) Then OptionsMenu = 4
+			If DrawButton(x+215*MenuScale,y,100*MenuScale,30*MenuScale,"CONTROLES",False) Then OptionsMenu = 3
+			If DrawButton(x+325*MenuScale,y,100*MenuScale,30*MenuScale,"AVANZADO",False) Then OptionsMenu = 4
 			
 			Local tx# = (GraphicWidth/2)+(width/2)
 			Local ty# = y
@@ -7239,7 +7239,7 @@ Function DrawMenu()
 					y=y+50*MenuScale
 					
 					Color 100,100,100
-					AAText(x, y, "Enable bump mapping:")	
+					AAText(x, y, "Activar relieve de texturas:")	
 					BumpEnabled = DrawTick(x + 270 * MenuScale, y + MenuScale, BumpEnabled, True)
 					If MouseOn(x + 270 * MenuScale, y + MenuScale, 20*MenuScale,20*MenuScale) And OnSliderID=0
 						DrawOptionsTooltip(tx,ty,tw,th,"bump")
@@ -7266,7 +7266,7 @@ Function DrawMenu()
 					y=y+30*MenuScale
 					
 					Color 255,255,255
-					AAText(x, y, "Enable room lights:")
+					AAText(x, y, "Luces de la habitacion:")
 					EnableRoomLights = DrawTick(x + 270 * MenuScale, y + MenuScale, EnableRoomLights)
 					If MouseOn(x+270*MenuScale,y+MenuScale,20*MenuScale,20*MenuScale) And OnSliderID=0
 						DrawOptionsTooltip(tx,ty,tw,th,"roomlights")
@@ -7276,7 +7276,7 @@ Function DrawMenu()
 					
 					ScreenGamma = (SlideBar(x + 270*MenuScale, y+6*MenuScale, 100*MenuScale, ScreenGamma*50.0)/50.0)
 					Color 255,255,255
-					AAText(x, y, "Screen gamma")
+					AAText(x, y, "Gamma de la pantalla")
 					If MouseOn(x+270*MenuScale,y+6*MenuScale,100*MenuScale+14,20) And OnSliderID=0
 						DrawOptionsTooltip(tx,ty,tw,th,"gamma",ScreenGamma)
 					EndIf
@@ -7286,7 +7286,7 @@ Function DrawMenu()
 					y=y+50*MenuScale
 					
 					Color 255,255,255
-					AAText(x, y, "Particle amount:")
+					AAText(x, y, "Cantidad de particulas:")
 					ParticleAmount = Slider3(x+270*MenuScale,y+6*MenuScale,100*MenuScale,ParticleAmount,2,"MINIMAL","REDUCED","FULL")
 					If (MouseOn(x + 270 * MenuScale, y-6*MenuScale, 100*MenuScale+14, 20) And OnSliderID=0) Or OnSliderID=2
 						DrawOptionsTooltip(tx,ty,tw,th,"particleamount",ParticleAmount)
@@ -7295,7 +7295,7 @@ Function DrawMenu()
 					y=y+50*MenuScale
 					
 					Color 255,255,255
-					AAText(x, y, "Texture LOD Bias:")
+					AAText(x, y, "Textura LOD Bias:")
 					TextureDetails = Slider5(x+270*MenuScale,y+6*MenuScale,100*MenuScale,TextureDetails,3,"0.8","0.4","0.0","-0.4","-0.8")
 					Select TextureDetails%
 						Case 0
@@ -7316,7 +7316,7 @@ Function DrawMenu()
 					
 					y=y+50*MenuScale
 					Color 100,100,100
-					AAText(x, y, "Save textures in the VRAM:")	
+					AAText(x, y, "Guardar texturas en la VRAM:")	
 					EnableVRam = DrawTick(x + 270 * MenuScale, y + MenuScale, EnableVRam, True)
 					If MouseOn(x + 270 * MenuScale, y + MenuScale, 20*MenuScale,20*MenuScale) And OnSliderID=0
 						DrawOptionsTooltip(tx,ty,tw,th,"vram")
@@ -7330,7 +7330,7 @@ Function DrawMenu()
 					
 					MusicVolume = (SlideBar(x + 250*MenuScale, y-4*MenuScale, 100*MenuScale, MusicVolume*100.0)/100.0)
 					Color 255,255,255
-					AAText(x, y, "Music volume:")
+					AAText(x, y, "Musica:")
 					If MouseOn(x+250*MenuScale,y-4*MenuScale,100*MenuScale+14,20)
 						DrawOptionsTooltip(tx,ty,tw,th,"musicvol",MusicVolume)
 					EndIf
@@ -7340,7 +7340,7 @@ Function DrawMenu()
 					PrevSFXVolume = (SlideBar(x + 250*MenuScale, y-4*MenuScale, 100*MenuScale, SFXVolume*100.0)/100.0)
 					If (Not DeafPlayer) Then SFXVolume# = PrevSFXVolume#
 					Color 255,255,255
-					AAText(x, y, "Sound volume:")
+					AAText(x, y, "Efectos de sonido:")
 					If MouseOn(x+250*MenuScale,y-4*MenuScale,100*MenuScale+14,20)
 						DrawOptionsTooltip(tx,ty,tw,th,"soundvol",PrevSFXVolume)
 					EndIf
@@ -7348,7 +7348,7 @@ Function DrawMenu()
 					y = y + 30*MenuScale
 					
 					Color 100,100,100
-					AAText x, y, "Sound auto-release:"
+					AAText x, y, "Reduccion de sonido auto:"
 					EnableSFXRelease = DrawTick(x + 270 * MenuScale, y + MenuScale, EnableSFXRelease,True)
 					If MouseOn(x+270*MenuScale,y+MenuScale,20*MenuScale,20*MenuScale)
 						DrawOptionsTooltip(tx,ty,tw,th+220*MenuScale,"sfxautorelease")
@@ -7357,7 +7357,7 @@ Function DrawMenu()
 					y = y + 30*MenuScale
 					
 					Color 100,100,100
-					AAText x, y, "Enable user tracks:"
+					AAText x, y, "Habilitar las pistas personalizadas:"
 					EnableUserTracks = DrawTick(x + 270 * MenuScale, y + MenuScale, EnableUserTracks,True)
 					If MouseOn(x+270*MenuScale,y+MenuScale,20*MenuScale,20*MenuScale)
 						DrawOptionsTooltip(tx,ty,tw,th,"usertrack")
@@ -7366,10 +7366,10 @@ Function DrawMenu()
 					If EnableUserTracks
 						y = y + 30 * MenuScale
 						Color 255,255,255
-						AAText x, y, "User track mode:"
+						AAText x, y, "Modo pista personalizadas:"
 						UserTrackMode = DrawTick(x + 270 * MenuScale, y + MenuScale, UserTrackMode)
 						If UserTrackMode
-							AAText x, y + 20 * MenuScale, "Repeat"
+							AAText x, y + 20 * MenuScale, "Repetir"
 						Else
 							AAText x, y + 20 * MenuScale, "Random"
 						EndIf
@@ -7389,7 +7389,7 @@ Function DrawMenu()
 					
 					MouseSens = (SlideBar(x + 270*MenuScale, y-4*MenuScale, 100*MenuScale, (MouseSens+0.5)*100.0)/100.0)-0.5
 					Color(255, 255, 255)
-					AAText(x, y, "Mouse sensitivity:")
+					AAText(x, y, "Sensibilidad el mouse:")
 					If MouseOn(x+270*MenuScale,y-4*MenuScale,100*MenuScale+14,20)
 						DrawOptionsTooltip(tx,ty,tw,th,"mousesensitivity",MouseSens)
 					EndIf
@@ -7397,7 +7397,7 @@ Function DrawMenu()
 					y = y + 30*MenuScale
 					
 					Color(255, 255, 255)
-					AAText(x, y, "Invert mouse Y-axis:")
+					AAText(x, y, "Invertir Mouse en eje vertical::")
 					InvertMouse = DrawTick(x + 270 * MenuScale, y + MenuScale, InvertMouse)
 					If MouseOn(x+270*MenuScale,y+MenuScale,20*MenuScale,20*MenuScale)
 						DrawOptionsTooltip(tx,ty,tw,th,"mouseinvert")
@@ -7407,7 +7407,7 @@ Function DrawMenu()
 					
 					MouseSmooth = (SlideBar(x + 270*MenuScale, y-4*MenuScale, 100*MenuScale, (MouseSmooth)*50.0)/50.0)
 					Color(255, 255, 255)
-					AAText(x, y, "Mouse smoothing:")
+					AAText(x, y, "Movimiento suave del Mouse:")
 					If MouseOn(x+270*MenuScale,y-4*MenuScale,100*MenuScale+14,20)
 						DrawOptionsTooltip(tx,ty,tw,th,"mousesmoothing",MouseSmooth)
 					EndIf
@@ -7415,29 +7415,29 @@ Function DrawMenu()
 					Color(255, 255, 255)
 					
 					y = y + 30*MenuScale
-					AAText(x, y, "Control configuration:")
+					AAText(x, y, "Configuracion de controles:")
 					y = y + 10*MenuScale
 					
-					AAText(x, y + 20 * MenuScale, "Move Forward")
+					AAText(x, y + 20 * MenuScale, "Mover adelante")
 					InputBox(x + 200 * MenuScale, y + 20 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_UP,210)),5)		
-					AAText(x, y + 40 * MenuScale, "Strafe Left")
+					AAText(x, y + 40 * MenuScale, "Mover izquierda")
 					InputBox(x + 200 * MenuScale, y + 40 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_LEFT,210)),3)	
-					AAText(x, y + 60 * MenuScale, "Move Backward")
+					AAText(x, y + 60 * MenuScale, "Mover atras")
 					InputBox(x + 200 * MenuScale, y + 60 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_DOWN,210)),6)				
-					AAText(x, y + 80 * MenuScale, "Strafe Right")
+					AAText(x, y + 80 * MenuScale, "Mover derecha")
 					InputBox(x + 200 * MenuScale, y + 80 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_RIGHT,210)),4)
 					
-					AAText(x, y + 100 * MenuScale, "Manual Blink")
+					AAText(x, y + 100 * MenuScale, "Parpadeo manual")
 					InputBox(x + 200 * MenuScale, y + 100 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_BLINK,210)),7)				
-					AAText(x, y + 120 * MenuScale, "Sprint")
+					AAText(x, y + 120 * MenuScale, "Correr")
 					InputBox(x + 200 * MenuScale, y + 120 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_SPRINT,210)),8)
-					AAText(x, y + 140 * MenuScale, "Open/Close Inventory")
+					AAText(x, y + 140 * MenuScale, "Inventario")
 					InputBox(x + 200 * MenuScale, y + 140 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_INV,210)),9)
-					AAText(x, y + 160 * MenuScale, "Crouch")
+					AAText(x, y + 160 * MenuScale, "Agacharse")
 					InputBox(x + 200 * MenuScale, y + 160 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_CROUCH,210)),10)
-					AAText(x, y + 180 * MenuScale, "Quick Save")
+					AAText(x, y + 180 * MenuScale, "Guardado rapido")
 					InputBox(x + 200 * MenuScale, y + 180 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_SAVE,210)),11)	
-					AAText(x, y + 200 * MenuScale, "Open/Close Console")
+					AAText(x, y + 200 * MenuScale, "Consola")
 					InputBox(x + 200 * MenuScale, y + 200 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_CONSOLE,210)),12)
 					
 					If MouseOn(x,y,300*MenuScale,220*MenuScale)
@@ -7479,7 +7479,7 @@ Function DrawMenu()
 					y = y + 50*MenuScale
 					
 					Color 255,255,255				
-					AAText(x, y, "Show HUD:")	
+					AAText(x, y, "Mostrar HUD:")	
 					HUDenabled = DrawTick(x + 270 * MenuScale, y + MenuScale, HUDenabled)
 					If MouseOn(x+270*MenuScale,y+MenuScale,20*MenuScale,20*MenuScale)
 						DrawOptionsTooltip(tx,ty,tw,th,"hud")
@@ -7488,7 +7488,7 @@ Function DrawMenu()
 					y = y + 30*MenuScale
 					
 					Color 255,255,255
-					AAText(x, y, "Enable console:")
+					AAText(x, y, "Activar consola:")
 					CanOpenConsole = DrawTick(x +270 * MenuScale, y + MenuScale, CanOpenConsole)
 					If MouseOn(x+270*MenuScale,y+MenuScale,20*MenuScale,20*MenuScale)
 						DrawOptionsTooltip(tx,ty,tw,th,"consoleenable")
@@ -7497,7 +7497,7 @@ Function DrawMenu()
 					y = y + 30*MenuScale
 					
 					Color 255,255,255
-					AAText(x, y, "Open console on error:")
+					AAText(x, y, "Abrir consola cuando hay un error:")
 					ConsoleOpening = DrawTick(x + 270 * MenuScale, y + MenuScale, ConsoleOpening)
 					If MouseOn(x+270*MenuScale,y+MenuScale,20*MenuScale,20*MenuScale)
 						DrawOptionsTooltip(tx,ty,tw,th,"consoleerror")
@@ -7506,7 +7506,7 @@ Function DrawMenu()
 					y = y + 50*MenuScale
 					
 					Color 255,255,255
-					AAText(x, y, "Achievement popups:")
+					AAText(x, y, "Notificacion de logros:")
 					AchvMSGenabled% = DrawTick(x + 270 * MenuScale, y, AchvMSGenabled%)
 					If MouseOn(x+270*MenuScale,y+MenuScale,20*MenuScale,20*MenuScale)
 						DrawOptionsTooltip(tx,ty,tw,th,"achpopup")
@@ -7515,7 +7515,7 @@ Function DrawMenu()
 					y = y + 50*MenuScale
 					
 					Color 255,255,255
-					AAText(x, y, "Show FPS:")
+					AAText(x, y, "Mostrar FPS:")
 					ShowFPS% = DrawTick(x + 270 * MenuScale, y, ShowFPS%)
 					If MouseOn(x+270*MenuScale,y+MenuScale,20*MenuScale,20*MenuScale)
 						DrawOptionsTooltip(tx,ty,tw,th,"showfps")
@@ -7524,7 +7524,7 @@ Function DrawMenu()
 					y = y + 30*MenuScale
 					
 					Color 255,255,255
-					AAText(x, y, "Framelimit:")
+					AAText(x, y, "Limite de FPS:")
 					
 					Color 255,255,255
 					If DrawTick(x + 270 * MenuScale, y, CurrFrameLimit > 0.0) Then
@@ -7550,7 +7550,7 @@ Function DrawMenu()
 					y = y + 80*MenuScale
 					
 					Color 255,255,255
-					AAText(x, y, "Antialiased text:")
+					AAText(x, y, "Suavisado de textos:")
 					AATextEnable% = DrawTick(x + 270 * MenuScale, y + MenuScale, AATextEnable%)
 					If AATextEnable_Prev% <> AATextEnable
 						For font.AAFont = Each AAFont
@@ -7591,7 +7591,7 @@ Function DrawMenu()
 				If (Not CanSave) Then AbleToSave = False
 				If AbleToSave
 					QuitButton = 140
-					If DrawButton(x, y + 60*MenuScale, 390*MenuScale, 60*MenuScale, "Save & Quit") Then
+					If DrawButton(x, y + 60*MenuScale, 390*MenuScale, 60*MenuScale, "Guardar y salir") Then
 						DropSpeed = 0
 						SaveGame(SavePath + CurrSave + "\")
 						NullGame()
@@ -7604,7 +7604,7 @@ Function DrawMenu()
 				EndIf
 			EndIf
 			
-			If DrawButton(x, y + QuitButton*MenuScale, 390*MenuScale, 60*MenuScale, "Quit") Then
+			If DrawButton(x, y + QuitButton*MenuScale, 390*MenuScale, 60*MenuScale, "Salir") Then
 				NullGame()
 				MenuOpen = False
 				MainMenuOpen = True
@@ -7613,14 +7613,14 @@ Function DrawMenu()
 				FlushKeys()
 			EndIf
 			
-			If DrawButton(x+101*MenuScale, y + 344*MenuScale, 230*MenuScale, 60*MenuScale, "Back") Then
+			If DrawButton(x+101*MenuScale, y + 344*MenuScale, 230*MenuScale, 60*MenuScale, "Atras") Then
 				AchievementsMenu = 0
 				OptionsMenu = 0
 				QuitMSG = 0
 				MouseHit1 = False
 			EndIf
 		Else
-			If DrawButton(x+101*MenuScale, y + 344*MenuScale, 230*MenuScale, 60*MenuScale, "Back") Then
+			If DrawButton(x+101*MenuScale, y + 344*MenuScale, 230*MenuScale, 60*MenuScale, "Atras") Then
 				AchievementsMenu = 0
 				OptionsMenu = 0
 				QuitMSG = 0
@@ -7669,7 +7669,7 @@ Function DrawMenu()
 				
 				y = y+ 72*MenuScale
 				
-				If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Resume", True, True) Then
+				If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Continuar", True, True) Then
 					MenuOpen = False
 					ResumeSounds()
 					MouseXSpeed() : MouseYSpeed() : MouseZSpeed() : mouse_x_speed_1#=0.0 : mouse_y_speed_1#=0.0
@@ -7678,7 +7678,7 @@ Function DrawMenu()
 				y = y + 75*MenuScale
 				If (Not SelectedDifficulty\permaDeath) Then
 					If GameSaved Then
-						If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Load Game") Then
+						If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Cargar partida") Then
 							DrawLoading(0)
 							
 							MenuOpen = False
@@ -7722,19 +7722,19 @@ Function DrawMenu()
 						DrawFrame(x,y,390*MenuScale, 60*MenuScale)
 						Color (100, 100, 100)
 						AASetFont Font2
-						AAText(x + (390*MenuScale) / 2, y + (60*MenuScale) / 2, "Load Game", True, True)
+						AAText(x + (390*MenuScale) / 2, y + (60*MenuScale) / 2, "Cargar Partida", True, True)
 					EndIf
 					y = y + 75*MenuScale
 			EndIf
 				
-				If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Achievements") Then AchievementsMenu = 1
+				If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Logros") Then AchievementsMenu = 1
 				y = y + 75*MenuScale
-				If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Options") Then OptionsMenu = 1
+				If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Ajustes") Then OptionsMenu = 1
 				y = y + 75*MenuScale
 			Else
 				y = y+104*MenuScale
 				If GameSaved And (Not SelectedDifficulty\permaDeath) Then
-					If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Load Game") Then
+					If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Cargar Partida") Then
 						DrawLoading(0)
 						
 						MenuOpen = False
@@ -7777,9 +7777,9 @@ Function DrawMenu()
 				Else
 					DrawButton(x, y, 390*MenuScale, 60*MenuScale, "")
 					Color 50,50,50
-					AAText(x + 185*MenuScale, y + 30*MenuScale, "Load Game", True, True)
+					AAText(x + 185*MenuScale, y + 30*MenuScale, "Cargar Partida", True, True)
 				EndIf
-				If DrawButton(x, y + 80*MenuScale, 390*MenuScale, 60*MenuScale, "Quit to Menu") Then
+				If DrawButton(x, y + 80*MenuScale, 390*MenuScale, 60*MenuScale, "Salir al Menu") Then
 					NullGame()
 					MenuOpen = False
 					MainMenuOpen = True
@@ -7791,7 +7791,7 @@ Function DrawMenu()
 			EndIf
 			
 			If KillTimer >= 0 And (Not MainMenuOpen)
-				If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Quit") Then
+				If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Salir") Then
 					QuitMSG = 1
 				EndIf
 			EndIf
@@ -10255,10 +10255,10 @@ Function Use427()
 				EndIf
 			EndIf
 			If prevI427Timer < 70*60 And I_427\Timer => 70*60 Then
-				Msg = "You feel refreshed and energetic."
+				Msg = "Te sientes renovado y con energía."
 				MsgTimer = 70*5
 			ElseIf prevI427Timer < 70*180 And I_427\Timer => 70*180 Then
-				Msg = "You feel gentle muscle spasms all over your body."
+				Msg = "Sientes suaves espasmos musculares por todo el cuerpo."
 				MsgTimer = 70*5
 			EndIf
 		Else
@@ -10272,10 +10272,10 @@ Function Use427()
 		EndIf
 	Else
 		If prevI427Timer-FPSfactor < 70*360 And I_427\Timer => 70*360 Then
-			Msg = "Your muscles are swelling. You feel more powerful than ever."
+			Msg = "Tus músculos se hinchan. Te sientes más poderoso que nunca."
 			MsgTimer = 70*5
 		ElseIf prevI427Timer-FPSfactor < 70*390 And I_427\Timer => 70*390 Then
-			Msg = "You can't feel your legs. But you don't need legs anymore."
+			Msg = "No puedes sentir las piernas. Pero ya no necesitas las piernas."
 			MsgTimer = 70*5
 		EndIf
 		I_427\Timer = I_427\Timer + FPSfactor
@@ -10305,7 +10305,7 @@ Function Use427()
 		EndIf
 		If I_427\Timer >= 70*420 Then
 			Kill()
-			DeathMSG = Chr(34)+"Requesting support from MTF Nu-7. We need more firepower to take this thing down."+Chr(34)
+			DeathMSG = Chr(34)+"Solicitando apoyo de la MTF Nu-7. Necesitamos más potencia de fuego para acabar con esta cosa."+Chr(34)
 		ElseIf I_427\Timer >= 70*390 Then
 			Crouch = True
 		EndIf
@@ -10445,16 +10445,16 @@ Function UpdateInfect()
 			Next
 			
 			If Infect > 20 And temp =< 20.0 Then
-				Msg = "You feel kinda feverish."
+				Msg = "Te sientes un poco de fiebre."
 				MsgTimer = 70*6
 			ElseIf Infect > 40 And temp =< 40.0
-				Msg = "You feel nauseated."
+				Msg = "Sientes náuseas."
 				MsgTimer = 70*6
 			ElseIf Infect > 60 And temp =< 60.0
-				Msg = "The nausea's getting worse."
+				Msg = "Las náuseas están empeorando."
 				MsgTimer = 70*6
 			ElseIf Infect > 80 And temp =< 80.0
-				Msg = "You feel very faint."
+				Msg = "Te sientes muy débil."
 				MsgTimer = 70*6
 			ElseIf Infect =>91.5
 				BlinkTimer = Max(Min(-10*(Infect-91.5),BlinkTimer),-10)
@@ -10514,8 +10514,8 @@ Function UpdateInfect()
 						PlayerRoom\NPC[0]\Sound = LoadSound_Strict("SFX\SCP\008\KillScientist2.ogg")
 						PlayerRoom\NPC[0]\SoundChn = PlaySound_Strict(PlayerRoom\NPC[0]\Sound)
 						
-						DeathMSG = "Subject D-9341 found ingesting Dr. [REDACTED] at Sector [REDACTED]. Subject was immediately terminated by Nine-Tailed Fox and sent for autopsy. "
-						DeathMSG = DeathMSG + "SCP-008 infection was confirmed, after which the body was incinerated."
+						DeathMSG = "El sujeto D-9341 fue encontrado ingiriendo al Dr. [ELIMINADO] en el sector [ELIMINADO]. El sujeto fue dado de baja inmediatamente por el Nine-Tailed Fox y enviado a autopsia. "
+						DeathMSG = DeathMSG + "Se confirmó la infección del SCP-008, tras lo cual el cuerpo fue incinerado."
 						
 						Kill()
 						de.Decals = CreateDecal(3, EntityX(PlayerRoom\NPC[0]\Collider), 544*RoomScale + 0.01, EntityZ(PlayerRoom\NPC[0]\Collider),90,Rnd(360),0)
@@ -10555,16 +10555,16 @@ Function UpdateInfect()
 				Kill()
 				BlinkTimer = Max(Min(-10*(Infect-96),BlinkTimer),-10)
 				If PlayerRoom\RoomTemplate\Name = "dimension1499" Then
-					DeathMSG = "The whereabouts of SCP-1499 are still unknown, but a recon team has been dispatched to investigate reports of a violent attack to a church in the Russian town of [REDACTED]."
+					DeathMSG = "El paradero de SCP-1499 sigue siendo desconocido, pero se ha enviado un equipo de reconocimiento para investigar los informes de un ataque violento a una iglesia en la ciudad rusa de [ELIMINADO]."
 				ElseIf PlayerRoom\RoomTemplate\Name = "gatea" Or PlayerRoom\RoomTemplate\Name = "exit1" Then
-					DeathMSG = "Subject D-9341 found wandering around Gate "
+					DeathMSG = "Sujeto D-9341 encontrado vagando por la Puerta "
 					If PlayerRoom\RoomTemplate\Name = "gatea" Then
 						DeathMSG = DeathMSG + "A"
 					Else
 						DeathMSG = DeathMSG + "B"
 					EndIf
-					DeathMSG = DeathMSG + ". Subject was immediately terminated by Nine-Tailed Fox and sent for autopsy. "
-					DeathMSG = DeathMSG + "SCP-008 infection was confirmed, after which the body was incinerated."
+					DeathMSG = DeathMSG + ". El sujeto fue inmediatamente eliminado por el Nine-Tailed Fox y enviado a la autopsia. "
+					DeathMSG = DeathMSG + "Se confirmó la infección del SCP-008, tras lo cual el cuerpo fue incinerado."
 				Else
 					DeathMSG = ""
 				EndIf
@@ -11298,7 +11298,7 @@ Function RenderWorld2()
 					power%=Int(Inventory(i)\state)
 					If Inventory(i)\state<=0.0 Then ;this nvg can't be used
 						hasBattery = 0
-						Msg = "The batteries in these night vision goggles died."
+						Msg = "Las baterías de estas gafas de visión nocturna se agotaron".
 						BlinkTimer = -1.0
 						MsgTimer = 350
 						Exit
@@ -11347,10 +11347,10 @@ Function RenderWorld2()
 			Local plusY% = 0
 			If hasBattery=1 Then plusY% = 40
 			
-			AAText GraphicWidth/2,(20+plusY)*MenuScale,"REFRESHING DATA IN",True,False
+			AAText GraphicWidth/2,(20+plusY)*MenuScale,"REFRESCANDO LOS DATOS EN",True,False
 			
 			AAText GraphicWidth/2,(60+plusY)*MenuScale,Max(f2s(NVTimer/60.0,1),0.0),True,False
-			AAText GraphicWidth/2,(100+plusY)*MenuScale,"SECONDS",True,False
+			AAText GraphicWidth/2,(100+plusY)*MenuScale,"SEGUNDOS",True,False
 			
 			temp% = CreatePivot() : temp2% = CreatePivot()
 			PositionEntity temp, EntityX(Collider), EntityY(Collider), EntityZ(Collider)
@@ -11427,7 +11427,7 @@ Function RenderWorld2()
 			Color 255,0,0
 			AASetFont Font3
 			
-			AAText GraphicWidth/2,20*MenuScale,"WARNING: LOW BATTERY",True,False
+			AAText GraphicWidth/2,20*MenuScale,"ATENCION: POCA BATERIA",True,False
 			Color 255,255,255
 		EndIf
 	EndIf
@@ -11963,15 +11963,15 @@ End Function
 
 Function CanUseItem(canUseWithHazmat%, canUseWithGasMask%, canUseWithEyewear%)
 	If (canUseWithHazmat = False And WearingHazmat) Then
-		Msg = "You can't use that item while wearing a hazmat suit."
+		Msg = "No se puede usar ese artículo mientras se lleva un traje para materiales peligrosos."
 		MsgTimer = 70*5
 		Return False
 	Else If (canUseWithGasMask = False And (WearingGasMask Or Wearing1499))
-		Msg = "You can't use that item while wearing a gas mask."
+		Msg = "No puedes usar ese objeto mientras llevas una máscara de gas."
 		MsgTimer = 70*5
 		Return False
 	Else If (canUseWithEyewear = False And (WearingNightVision))
-		Msg = "You can't use that item while wearing headgear."
+		Msg = "No se puede usar ese objeto mientras se lleva el casco."
 	EndIf
 	
 	Return True

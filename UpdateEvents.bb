@@ -67,11 +67,11 @@ Function UpdateEvents()
 						CameraFogRange(Camera, CameraFogNear, CameraFogFar)
 						CameraFogMode(Camera, 1)
 						If SelectedDifficulty\saveType = SAVEANYWHERE Then
-							Msg = "Press "+KeyName(KEY_SAVE)+" to save."
+							Msg = "Presiona "+KeyName(KEY_SAVE)+" para guardar."
 							MsgTimer = 70*4
 							;SetSaveMSG("Press "+KeyName(KEY_SAVE)+" to save.")
 						ElseIf SelectedDifficulty\saveType = SAVEONSCREENS Then
-							Msg = "Saving is only permitted on clickable monitors scattered throughout the facility."
+							Msg = "Solo se puede guardar en los monitores clicables repartidos por las instalaciones."
 							MsgTimer = 70 * 8
 							;SetSaveMSG("Saving is only permitted on clickable monitors scattered throughout the facility.")
 						EndIf
@@ -231,7 +231,7 @@ Function UpdateEvents()
                                                 PositionEntity Curr173\Collider, 0,0,0
                                             EndIf
 											ResetEntity Curr173\Collider
-											Msg = "Hold "+KeyName(KEY_SPRINT)+" to run."
+											Msg = "Mantiene "+KeyName(KEY_SPRINT)+" para correr."
 											MsgTimer = 70*8
 										EndIf
 									EndIf
@@ -422,7 +422,7 @@ Function UpdateEvents()
 									ShowEntity Collider
 									DropSpeed = 0
 									e\EventState3 = 15
-									Msg = "Pick up the paper on the desk."
+									Msg = "Recoge el papel de la mesa."
 									MsgTimer=70*7
 								EndIf
 								
@@ -431,7 +431,7 @@ Function UpdateEvents()
 								
 							ElseIf e\EventState3 < 40
 								If Inventory(0)<>Null Then
-									Msg = "Press "+KeyName(KEY_INV)+" to open the inventory."
+									Msg = "Presiona "+KeyName(KEY_INV)+" para abrir el inventario."
 									MsgTimer=70*7
 									e\EventState3 = 40
 									Exit
@@ -1014,7 +1014,7 @@ Function UpdateEvents()
 							If IntroSFX(17)<>0 Then
 								If EntityVisible(Curr173\Collider, Collider) Then
 									If EntityInView(Curr173\obj, Camera) Then
-										Msg = "Press "+KeyName(KEY_BLINK)+" to blink."
+										Msg = "Presiona "+KeyName(KEY_BLINK)+" para parpadear."
 										MsgTimer = 70*4
 										PlaySound_Strict IntroSFX(17)
 										IntroSFX(17)=0
@@ -2161,8 +2161,8 @@ Function UpdateEvents()
 											FreeEntity pvt
 											
 											If KillTimer = 0 Then
-												DeathMSG = "In addition to the decomposed appearance typical of SCP-106's victims, the body exhibits injuries that have not been observed before: "
-												DeathMSG = DeathMSG + "massive skull fracture, three broken ribs, fractured shoulder and multiple heavy lacerations."
+												DeathMSG = "Ademas del aspecto descompuesto tipico de las victimas de SCP-106, el cuerpo presenta lesiones que no se habian observado antes: "
+												DeathMSG = DeathMSG + "fractura masiva de craneo, tres costillas rotas, fractura de hombro y multiples laceraciones fuertes."
 												
 												PlaySound_Strict LoadTempSound("SFX\Room\PocketDimension\Impact.ogg")
 												KillTimer=-1.0
@@ -2333,7 +2333,7 @@ Function UpdateEvents()
 								
 								If KillTimer => 0 Then 
 									PlaySound_Strict HorrorSFX(8)
-									DeathMSG = "In addition to the decomposed appearance typical of the victims of SCP-106, the subject seems to have suffered multiple heavy fractures to both of his legs."
+									DeathMSG = "Ademas del aspecto descompuesto tipico de las victimas de SCP-106, el sujeto parece haber sufrido multiples y fuertes fracturas en ambas piernas."
 									
 								EndIf
 								KillTimer = Min(-1, KillTimer)	
@@ -2555,11 +2555,11 @@ Function UpdateEvents()
 										If Using294 Then MouseHit1=False
 									ElseIf e\EventState2 = 1 And (Not inserted) Then
 										Using294=False
-										Msg = "You need to insert another Quarter in order to use this machine."
+										Msg = "Para poder utilizar esta maquina es necesario insertar otra moneda."
 										MsgTimer = 70*5
 									ElseIf (Not inserted) Then
 										Using294=False
-										Msg = "You need to insert two Quarters in order to use this machine."
+										Msg = "Necesita insertar dos monedas para usar esta maquina."
 										MsgTimer = 70*5
 									EndIf
 								EndIf
@@ -2961,7 +2961,7 @@ Function UpdateEvents()
 											LightFlash = 0.4
 											CameraShake = 1.0
 											Kill()
-											DeathMSG = "Subject D-9341 killed by the Tesla gate at [REDACTED]."
+											DeathMSG = "Sujeto D-9341 muerto por la puerta de Tesla en [ELIMINADO]."
 										EndIf
 									Next
 								EndIf
@@ -4119,7 +4119,7 @@ Function UpdateEvents()
 								
 								If MouseHit1 Then
 									If ItemAmount >= MaxItemAmount Then
-										Msg = "You cannot carry any more items."
+										Msg = "No puedes llevar mas items."
 										MsgTimer = 70 * 5
 									Else
 										SelectedItem = CreateItem("Drawing", "paper", 0.0, 0.0, 0.0)
@@ -4808,25 +4808,25 @@ Function UpdateEvents()
 						
 						Select Floor(e\EventState)
 							Case 250.0
-								Msg = "Hey there!"
+								Msg = "Hola!"
 								MsgTimer = 70*5
 							Case 500.0
-								Msg = "If you're seeing this, post a bug report."
+								Msg = "Si estas viendo esto, publica un informe de error."
 								MsgTimer = 70*5
 							Case 700.0
-								Msg = "Seriously, this SCP should not spawn." ; shouldn't --> should not why juan why --Mark
+								Msg = "En serio, este SCP no deberia aparecer." ; shouldn't --> should not why juan why --Mark
 								MsgTimer = 70*5
 							Case 800.0
 								BlinkTimer = -2
 								BlurTimer = 800
 							Case 1200.0
-								Msg = "This event sucks."
+								Msg = "Este evento apesta."
 								MsgTimer = 70*5
 							Case 1400.0
-								Msg = "Thanks a lot, Juan."
+								Msg = "Muchas gracias, Juan."
 								MsgTimer = 70*5
 							Case 1500.0
-								DeathMSG = "God DAMMIT, Juan. What were you thinking?"
+								DeathMSG = "Maldita sea, Juan. En que estabas pensando?"
 								Kill()
 						End Select
 						If e\EventState >= 2500.0 Then
@@ -4835,7 +4835,7 @@ Function UpdateEvents()
 						EndIf
 						If PlayerRoom <> e\room Then
 							;e\EventState = 2300.0
-							If PlayerRoom\RoomTemplate\Name = "pocketdimension" Then DeathMSG = "Subject D-9341 was captured and killed by SCP-106. Body was disposed of via incineration."
+							If PlayerRoom\RoomTemplate\Name = "pocketdimension" Then DeathMSG = "El sujeto D-9341 fue capturado y asesinado por el SCP-106. El cuerpo fue eliminado mediante incineracion."
 							Kill()
 							Playable = True
 						EndIf
@@ -5121,7 +5121,7 @@ Function UpdateEvents()
 									If e\EventState3>70 And e\EventState3-FPSfactor=<70 Then
 										PlaySound_Strict LoadTempSound("SFX\SCP\012\Speech1.ogg")
 									ElseIf e\EventState3>13*70 And e\EventState3-FPSfactor=<13*70
-										Msg="You start pushing your nails into your wrist, drawing blood."
+										Msg="Empiezas a clavarte las unas en la muneca, sacando sangre."
 										MsgTimer = 7*70
 										Injuries=Injuries+0.5
 										PlaySound_Strict LoadTempSound("SFX\SCP\012\Speech2.ogg")
@@ -5130,12 +5130,12 @@ Function UpdateEvents()
 										EntityTexture (e\room\Objects[4], tex,0,1)
 										FreeTexture tex
 										
-										Msg="You tear open your left wrist and start writing on the composition with your blood."
+										Msg="Te abres la muneca izquierda y empiezas a escribir en la composicion con tu sangre."
 										MsgTimer = 7*70
 										Injuries=Max(Injuries,1.5)
 										PlaySound_Strict LoadTempSound("SFX\SCP\012\Speech"+Rand(3,4)+".ogg")
 									ElseIf e\EventState3>49*70 And e\EventState3-FPSfactor=<49*70
-										Msg="You push your fingers deeper into the wound."
+										Msg="Presionas tus dedos mas profundamente en la herida."
 										MsgTimer = 8*70
 										Injuries=Injuries+0.3
 										PlaySound_Strict LoadTempSound("SFX\SCP\012\Speech5.ogg")
@@ -5151,7 +5151,7 @@ Function UpdateEvents()
 										EntityTexture (e\room\Objects[4], tex,0,1)
 										FreeTexture tex
 										
-										Msg="You rip the wound wide open. Grabbing scoops of blood pouring out."
+										Msg="Rasgas la herida de par en par. Agarras cucharadas de sangre que salen a borbotones."
 										MsgTimer = 7*70
 										Injuries=Injuries+0.8
 										PlaySound_Strict LoadTempSound("SFX\SCP\012\Speech7.ogg")
@@ -5160,8 +5160,8 @@ Function UpdateEvents()
 										de.Decals = CreateDecal(17,  EntityX(Collider), -768*RoomScale+0.01, EntityZ(Collider),90,Rnd(360),0)
 										de\Size = 0.1 : de\maxsize = 0.45 : de\sizechange = 0.0002 : UpdateDecals()
 									ElseIf e\EventState3>85*70 And e\EventState3-FPSfactor=<85*70	
-										DeathMSG = "Subject D-9341 found in a pool of blood next to SCP-012. Subject seems to have ripped open his wrists and written three extra "
-										DeathMSG = DeathMSG + "lines to the composition before dying of blood loss."
+										DeathMSG = "Sujeto D-9341 encontrado en un charco de sangre junto a SCP-012. El sujeto parece haberse desgarrado las munecas y haber escrito tres "
+										DeathMSG = DeathMSG + "lineas a la composicion antes de morir por perdida de sangre."
 										Kill()
 									EndIf
 									
@@ -5593,9 +5593,9 @@ Function UpdateEvents()
 										EndIf
 										
 										If KillTimer < 0 And Bloodloss =>100 Then
-											DeathMSG = "Class D Subject D-9341 found dead inside SCP-035's containment chamber. "
-											DeathMSG = DeathMSG + "The subject exhibits heavy hemorrhaging of blood vessels around the eyes and inside the mouth and nose. "
-											DeathMSG = DeathMSG + "Sent for autopsy."
+											DeathMSG = "El sujeto de clase D, D-9341 fue encontrado muerto dentro de la camara de contencion de SCP-035. "
+											DeathMSG = DeathMSG + "El sujeto presenta una fuerte hemorragia de los vasos sanguineos alrededor de los ojos y dentro de la boca y la nariz. "
+											DeathMSG = DeathMSG + "Enviado para autopsia."
 										EndIf
 									EndIf
 								EndIf
@@ -6361,10 +6361,10 @@ Function UpdateEvents()
 								EndIf
 							Case 67
 								If (Rand(150)=1) Then
-									DeathMSG = "The SCP-205 cycle seems to have resumed its normal course after the anomalies observed during "
-									DeathMSG = DeathMSG + "[REDACTED]. The body of subject D-9341 was discovered inside the chamber. "
-									DeathMSG = DeathMSG + "The subject exhibits signs of blunt force trauma typical for personnel who have "
-									DeathMSG = DeathMSG + "entered the chamber when the lights are off."
+									DeathMSG = "El ciclo SCP-205 parece haber retomado su curso normal tras las anomalias observadas durante "
+									DeathMSG = DeathMSG + "[ELIMINADO]. El cuerpo del sujeto D-9341 fue descubierto dentro de la camara. "
+									DeathMSG = DeathMSG + "El sujeto muestra signos de traumatismo por objeto contundente tipicos del personal que ha "
+									DeathMSG = DeathMSG + "entrado en la camara cuando las luces estan apagadas."
 									
 									Injuries=Injuries+Rnd(0.4,0.8)
 									PlaySound_Strict DamageSFX(Rand(2,3))
@@ -6510,7 +6510,7 @@ Function UpdateEvents()
 											e\EventState3 = 0.0
 										Else
 											PlaySound_Strict(LoadTempSound("SFX\Door\WoodenDoorBudge.ogg"))
-											Msg = "The door will not budge."
+											Msg = "La puerta no se mueve."
 											MsgTimer = 70*5
 										EndIf
 									EndIf
@@ -6548,7 +6548,7 @@ Function UpdateEvents()
 								If SelectedItem = Null Then
 									If MouseHit1 Then
 										PlaySound_Strict(LoadTempSound("SFX\Door\WoodenDoorBudge.ogg"))
-										Msg = "The door will not budge."
+										Msg = "La puerta no se mueve."
 										MsgTimer = 5*70
 									EndIf
 								ElseIf SelectedItem\itemtemplate\tempname="scp860" 
@@ -7163,7 +7163,7 @@ Function UpdateEvents()
 										If (Not WearingHazmat) Then
 											Injuries=Injuries+0.1
 											If Infect=0 Then Infect=1
-											Msg = "The window shattered and a piece of glass cut your arm."
+											Msg = "La ventana se rompio y un trozo de vidrio te corto el brazo."
 											MsgTimer = 70*8
 										EndIf
 										
@@ -7524,7 +7524,7 @@ Function UpdateEvents()
 								Select setting
 									Case "coarse"
 										Injuries = 4.0
-										Msg = "You notice countless small incisions all around your body. They are bleeding heavily."
+										Msg = "Notas innumerables incisiones pequenas alrededor de tu cuerpo. Estan sangrando mucho."
 										MsgTimer = 70*8
 									Case "1:1"
 										InvertMouse = (Not InvertMouse)
@@ -7611,7 +7611,7 @@ Function UpdateEvents()
 									e\EventState = 3	
 									PlaySound_Strict e\Sound2
 									
-									Msg = "Something is growing all around your body."
+									Msg = "Algo esta creciendo alrededor de tu cuerpo."
 									MsgTimer = 70.0 * 3.0
 								Else
 									e\EventState3 = 70*30
@@ -7625,32 +7625,32 @@ Function UpdateEvents()
 							If (e\EventState2>250.0 And e\EventState2-FPSfactor <= 250.0) Then
 								Select Rand(3)
 									Case 1
-										Msg = "Ears are growing all over your body."
+										Msg = "Te crecen orejas por todo el cuerpo."
 									Case 2
-										Msg = "Ear-like organs are growing all over your body."
+										Msg = "Organos parecidos a las orejas estan creciendo por todo el cuerpo."
 									Case 3
-										Msg = "Ears are growing all over your body. They are crawling on your skin."
+										Msg = "Orejas estan creciendo por todo tu cuerpo. Se arrastran por tu piel."
 								End Select
 								
 								MsgTimer = 70.0 * 3.0
 							Else If (e\EventState2>600.0 And e\EventState2-FPSfactor <= 600.0)
 								Select Rand(4)
 									Case 1
-										Msg = "It is becoming difficult to breathe."
+										Msg = "Se hace dificil respirar."
 									Case 2
-										Msg = "You have excellent hearing now. Also, you are dying."
+										Msg = "Ahora tienes una excelente audicion. Ademas, te estas muriendo."
 									Case 3
-										Msg = "The ears are growing inside your body."
+										Msg = "Te crecen orejas por todo el cuerpo."
 									Case 4
-										Msg = Chr(34)+"Can't... Breathe..."+Chr(34)
+										Msg = Chr(34)+"No puedo... Respirar..."+Chr(34)
 								End Select
 								
 								MsgTimer = 70.0 * 5.0
 							EndIf
 							
 							If (e\EventState2>70*15) Then
-								DeathMSG = "A dead body covered in ears was found in [REDACTED]. Subject was presumably attacked by an instance of SCP-1048-A and suffocated to death by the ears. "
-								DeathMSG = DeathMSG + "Body was sent for autopsy."
+								DeathMSG = "Se ha encontrado un cadaver cubierto de orejas en [ELIMINADO]. El sujeto fue presumiblemente atacado por una instancia de SCP-1048-A y murio asfixiado por las orejas. "
+								DeathMSG = DeathMSG + "El cuerpo fue enviado para la autopsia."
 								Kill()
 								e\EventState = 4
 								RemoveEvent(e)
@@ -7923,16 +7923,16 @@ Function UpdateEvents()
 								MouseHit1 = False
 								e\EventState3 = 0.0
 								If Injuries > 15
-									DeathMSG = "A dead Class D subject was discovered within the containment chamber of SCP-1162."
-									DeathMSG = DeathMSG + " An autopsy revealed that his right lung was missing, which suggests"
-									DeathMSG = DeathMSG + " interaction with SCP-1162."
+									DeathMSG = "Se descubrio un sujeto de clase D muerto dentro de la camara de contencion del SCP-1162."
+									DeathMSG = DeathMSG + " La autopsia revelo que le faltaba el pulmon derecho, lo que sugiere"
+									DeathMSG = DeathMSG + " interaccion con SCP-1162."
 									PlaySound_Strict LoadTempSound("SFX\SCP\1162\BodyHorrorExchange"+Rand(1,4)+".ogg")
 									LightFlash = 5.0
 									Kill()
 								Else
 									PlaySound_Strict LoadTempSound("SFX\SCP\1162\BodyHorrorExchange"+Rand(1,4)+".ogg")
 									LightFlash = 5.0
-									Msg = "You feel a sudden overwhelming pain in your chest."
+									Msg = "Sientes un dolor repentino y abrumador en el pecho."
 									MsgTimer = 70*5
 								EndIf
 								Exit
@@ -7953,16 +7953,16 @@ Function UpdateEvents()
 							de\size = 0.75 : ScaleSprite de\obj, de\size, de\size
 							FreeEntity pvt
 							If Injuries > 15
-								DeathMSG = "A dead Class D subject was discovered within the containment chamber of SCP-1162."
-								DeathMSG = DeathMSG + " An autopsy revealed that his right lung was missing, which suggests"
-								DeathMSG = DeathMSG + " interaction with SCP-1162."
+								DeathMSG = "Se descubrio un sujeto de clase D muerto dentro de la camara de contencion del SCP-1162."
+								DeathMSG = DeathMSG + " La autopsia revelo que le faltaba el pulmon derecho, lo que sugiere"
+								DeathMSG = DeathMSG + " una interaccion con el SCP-1162."
 								PlaySound_Strict LoadTempSound("SFX\SCP\1162\BodyHorrorExchange"+Rand(1,4)+".ogg")
 								LightFlash = 5.0
 								Kill()
 							Else
 								PlaySound_Strict LoadTempSound("SFX\SCP\1162\BodyHorrorExchange"+Rand(1,4)+".ogg")
 								LightFlash = 5.0
-								Msg = "You notice something moving in your pockets and a sudden pain in your chest."
+								Msg = "Notas que algo se mueve en tus bolsillos y un dolor repentino en el pecho."
 								MsgTimer = 70*5
 							EndIf
 							e\EventState2 = 0.0
@@ -8706,7 +8706,7 @@ Function UpdateEvents()
 				If PlayerRoom=e\room Then
 					UpdateButton(e\room\Objects[2])
 					If ClosestButton = e\room\Objects[2] And MouseHit1 Then
-						Msg = "The elevator appears to be broken."
+						Msg = "El elevador parece estar roto."
 						PlaySound2(ButtonSFX2, Camera, e\room\Objects[2])
 						MsgTimer = 5*70
 						MouseHit1=0
@@ -8719,7 +8719,7 @@ Function UpdateEvents()
 					For i = 0 To 1
 						UpdateButton(e\room\Objects[i])
 						If ClosestButton = e\room\Objects[i] And MouseHit1 Then
-							Msg = "The elevator appears to be broken."
+							Msg = "El elevador parece estar roto"
 							PlaySound2(ButtonSFX2, Camera, e\room\Objects[i])
 							MsgTimer = 5*70
 							MouseHit1=0

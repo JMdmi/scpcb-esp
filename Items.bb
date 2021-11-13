@@ -605,7 +605,7 @@ Function PickItem(item.Items)
 	Next
 	
 	If WearingHazmat > 0 Then
-		Msg = "You cannot pick up any items while wearing a hazmat suit."
+		Msg = "No puedes recoger ningun item mientras llevas el traje para materiales peligrosos."
 		MsgTimer = 70*5
 		Return
 	EndIf
@@ -621,10 +621,10 @@ Function PickItem(item.Items)
 								ShowEntity Light
 								LightFlash = 7
 								PlaySound_Strict(LoadTempSound("SFX\SCP\1123\Touch.ogg"))		
-								DeathMSG = "Subject D-9341 was shot dead after attempting to attack a member of Nine-Tailed Fox. Surveillance tapes show that the subject had been "
-								DeathMSG = DeathMSG + "wandering around the site approximately 9 minutes prior, shouting the phrase " + Chr(34) + "get rid of the four pests" + Chr(34)
-								DeathMSG = DeathMSG + " in chinese. SCP-1123 was found in [REDACTED] nearby, suggesting the subject had come into physical contact with it. How "
-								DeathMSG = DeathMSG + "exactly SCP-1123 was removed from its containment chamber is still unknown."
+								DeathMSG = "El sujeto D-9341 fue abatido tras intentar atacar a un miembro de Zorro de Nueve Colas. Las cintas de vigilancia muestran que el sujeto habia estado "
+								DeathMSG = DeathMSG + "deambulando por el lugar aproximadamente 9 minutos antes, gritando la frase " + Chr(34) + "elimina las cuatro plagas" + Chr(34)
+								DeathMSG = DeathMSG + " en chino. SCP-1123 fue encontrado en [REDACTED] cerca, lo que sugiere que el sujeto habia entrado en contacto fisico con el. Aun "
+								DeathMSG = DeathMSG + " se desconoce como se extrajo exactamente el SCP-1123 de su camara de contencion."
 								Kill()
 							EndIf
 							For e.Events = Each Events
@@ -646,8 +646,8 @@ Function PickItem(item.Items)
 						ShowEntity Light
 						LightFlash = 1.0
 						PlaySound_Strict(IntroSFX(11))
-						DeathMSG = "Subject D-9341 found dead inside SCP-914's output booth next to what appears to be an ordinary nine-volt battery. The subject is covered in severe "
-						DeathMSG = DeathMSG + "electrical burns, and assumed to be killed via an electrical shock caused by the battery. The battery has been stored for further study."
+						DeathMSG = "El sujeto D-9341 fue encontrado muerto dentro de la cabina de salida de SCP-914 junto a lo que parece ser una bateria ordinaria de nueve voltios. El sujeto esta cubierto de graves "
+						DeathMSG = DeathMSG + "quemaduras electricas, y se supone que murio por una descarga electrica causada por la bateria. La bateria ha sido almacenada para su posterior estudio."
 						Kill()
 					Case "scp148"
 						GiveAchievement(Achv148)	
@@ -658,7 +658,7 @@ Function PickItem(item.Items)
 					Case "key6"
 						GiveAchievement(AchvOmni)
 					Case "veryfinevest"
-						Msg = "The vest is too heavy to pick up."
+						Msg = "El chaleco es demasiado pesado para recogerlo."
 						MsgTimer = 70*6
 						Exit
 					Case "firstaid", "finefirstaid", "veryfinefirstaid", "firstaid2"
@@ -680,11 +680,11 @@ Function PickItem(item.Items)
 						Next
 						
 						If canpickitem=False Then
-							Msg = "You are not able to wear two hazmat suits at the same time."
+							Msg = "No puede llevar dos trajes para materiales peligrosos al mismo tiempo."
 							MsgTimer = 70 * 5
 							Return
 						ElseIf canpickitem=2 Then
-							Msg = "You are not able to wear a vest and a hazmat suit at the same time."
+							Msg = "No se puede llevar un chaleco y un traje para materiales peligrosos al mismo tiempo."
 							MsgTimer = 70 * 5
 							Return
 						Else
@@ -706,11 +706,11 @@ Function PickItem(item.Items)
 						Next
 						
 						If canpickitem=False Then
-							Msg = "You are not able to wear two vests at the same time."
+							Msg = "No se pueden llevar dos chalecos al mismo tiempo."
 							MsgTimer = 70 * 5
 							Return
 						ElseIf canpickitem=2 Then
-							Msg = "You are not able to wear a vest and a hazmat suit at the same time."
+							Msg = "No se puede llevar un chaleco y un traje para materiales peligrosos al mismo tiempo."
 							MsgTimer = 70 * 5
 							Return
 						Else
@@ -732,7 +732,7 @@ Function PickItem(item.Items)
 			EndIf
 		Next
 	Else
-		Msg = "You cannot carry any more items."
+		Msg = "No puedes llevar mas objetos."
 		MsgTimer = 70 * 5
 	EndIf
 	CatchErrors("PickItem")
@@ -740,7 +740,7 @@ End Function
 
 Function DropItem(item.Items,playdropsound%=True)
 	If WearingHazmat > 0 Then
-		Msg = "You cannot drop any items while wearing a hazmat suit."
+		Msg = "No puedes soltar ningun objeto mientras llevas el traje para materiales peligrosos."
 		MsgTimer = 70*5
 		Return
 	EndIf

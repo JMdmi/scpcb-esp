@@ -24,8 +24,8 @@ Const SAVEANYWHERE = 0, SAVEONQUIT=1, SAVEONSCREENS=2
 Const EASY = 0, NORMAL = 1, HARD = 2
 
 difficulties(SAFE) = New Difficulty
-difficulties(SAFE)\name = "Safe"
-difficulties(SAFE)\description ="The game can be saved any time. However, as in the case of SCP Objects, a Safe classification does not mean that handling it does not pose a threat."
+difficulties(SAFE)\name = "Seguro"
+difficulties(SAFE)\description ="Se puede guardar en todo momento. Sin embargo, en el caso de los objetos SCP, una clase Seguro no significa que su manipulacion no sea una amenaza."
 difficulties(SAFE)\permaDeath = False
 difficulties(SAFE)\aggressiveNPCs = False
 difficulties(SAFE)\saveType = SAVEANYWHERE
@@ -36,8 +36,8 @@ difficulties(SAFE)\b = 50
 
 difficulties(EUCLID) = New Difficulty
 difficulties(EUCLID)\name = "Euclid"
-difficulties(EUCLID)\description = "In Euclid difficulty, saving is only allowed at specific locations marked by lit up computer screens. "
-difficulties(EUCLID)\description = difficulties(EUCLID)\description +"Euclid-class objects are inherently unpredictable, so that reliable containment is not always possible."
+difficulties(EUCLID)\description = "En Euclid, el guardado solo se permite en determinadas ubicaciones marcadas por las pantallas de algunos ordenadores"
+difficulties(EUCLID)\description = difficulties(EUCLID)\description +"Los de clase Euclid, son en esencia, impredecibles , por lo que una contencion fiable no es del todo posible."
 difficulties(EUCLID)\permaDeath = False
 difficulties(EUCLID)\aggressiveNPCs = False
 difficulties(EUCLID)\saveType = SAVEONSCREENS
@@ -48,8 +48,8 @@ difficulties(EUCLID)\b = 0
 
 difficulties(KETER) = New Difficulty
 difficulties(KETER)\name = "Keter"
-difficulties(KETER)\description = "Keter-class objects are considered the most dangerous ones in Foundation containment. "
-difficulties(KETER)\description = difficulties(KETER)\description +"The same can be said for this difficulty level: the SCPs are more aggressive, and you have only one life - when you die, the game is over. "
+difficulties(KETER)\description = "Los objetos de clase Keter se consideran los mas peligrosos en la contencion de la Fundacion. "
+difficulties(KETER)\description = difficulties(KETER)\description +"Lo mismo puede decirse de este nivel de dificultad: los SCP son más agresivos, y sólo tienes una vida: cuando mueres, el juego se acaba. "
 difficulties(KETER)\permaDeath = True
 difficulties(KETER)\aggressiveNPCs = True
 difficulties(KETER)\saveType = SAVEONQUIT
@@ -59,7 +59,7 @@ difficulties(KETER)\g = 0
 difficulties(KETER)\b = 0
 
 difficulties(CUSTOM) = New Difficulty
-difficulties(CUSTOM)\name = "Custom"
+difficulties(CUSTOM)\name = "Personalizado"
 difficulties(CUSTOM)\permaDeath = False
 difficulties(CUSTOM)\aggressiveNPCs = True
 difficulties(CUSTOM)\saveType = SAVEANYWHERE
