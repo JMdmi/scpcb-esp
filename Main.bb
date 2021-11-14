@@ -208,7 +208,7 @@ Global GameSaved%
 
 Global CanSave% = True
 
-AppTitle "SCP - Containment Breach v"+VersionNumber
+AppTitle "SCP - Containment Breach v"+VersionNumber+" Traducido al Espanol"
 
 PlayStartupVideos()
 
